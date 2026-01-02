@@ -32,19 +32,16 @@ label { font-weight:bold; margin-top:10px; display:block; }
 
 <section>
 <h2>FSTL AI Paid Verification</h2>
-<p>Enter your details to instantly verify a transaction and download a bank-backed digital receipt.</p>
+<p>Enter your Reference ID, Agent ID, or Buyer Name to instantly verify a transaction and download a bank-backed digital receipt.</p>
 
-<label for="refID">Reference ID (FSTL-REF-XXXX)</label>
+<label for="refID">Reference ID</label>
 <input type="text" id="refID" placeholder="FSTL-REF-XXXX">
 
-<label for="agentID">Agent ID (FSTL-AGENT-XXXX)</label>
+<label for="agentID">Agent ID</label>
 <input type="text" id="agentID" placeholder="FSTL-AGENT-XXXX">
 
-<label for="buyerName">Buyer Full Name</label>
+<label for="buyerName">Buyer Name</label>
 <input type="text" id="buyerName" placeholder="John Doe">
-
-<label for="paymentRef">Last 4 Digits of Payment Reference</label>
-<input type="text" id="paymentRef" placeholder="XXXX">
 
 <button onclick="startVerification()">Submit & Verify</button>
 
@@ -52,40 +49,46 @@ label { font-weight:bold; margin-top:10px; display:block; }
 </section>
 
 <script>
-async function startVerification() {
+// Example client-side dataset
+const transactions = [
+  { ref: "FSTL-REF-1001", agent: "FSTL-AGENT-01", buyer: "John Doe", status:"Paid" },
+  { ref: "FSTL-REF-1002", agent: "FSTL-AGENT-02", buyer: "Jane Doe", status:"Pending" },
+  { ref: "FSTL-REF-1003", agent: "FSTL-AGENT-03", buyer: "Alice Smith", status:"Paid" }
+];
+
+function startVerification() {
   const ref = document.getElementById('refID').value.trim();
   const agent = document.getElementById('agentID').value.trim();
   const buyer = document.getElementById('buyerName').value.trim();
-  const payRef = document.getElementById('paymentRef').value.trim();
   const resultDiv = document.getElementById('result');
 
-  if(!ref || !agent || !buyer || !payRef) {
-    alert('Please fill all fields');
+  if(!ref && !agent && !buyer) {
+    alert('Please enter at least one field to search');
     return;
   }
 
-  resultDiv.innerHTML = '🔒 FSTL AI is verifying transaction...';
+  // Filter dataset based on input
+  const found = transactions.find(t =>
+    (ref && t.ref === ref) ||
+    (agent && t.agent === agent) ||
+    (buyer && t.buyer.toLowerCase() === buyer.toLowerCase())
+  );
 
-  await new Promise(r => setTimeout(r, 2000)); // Simulate AI + bank verification
-
-  const verificationSuccess = true; // Placeholder for real backend
-
-  if(verificationSuccess) {
+  if(found) {
     resultDiv.innerHTML = `
       ✅ Transaction Verified!<br>
-      <strong>Reference ID:</strong> ${ref}<br>
-      <strong>Agent ID:</strong> ${agent}<br>
-      <strong>Buyer Name:</strong> ${buyer}<br>
-      <strong>Payment Reference:</strong> ${payRef}<br>
-      💰 Payment confirmed to FSTL bank account<br>
-      <button onclick="downloadPDF('${ref}','${agent}','${buyer}','${payRef}')">Download Styled PDF Receipt</button>
+      <strong>Reference ID:</strong> ${found.ref}<br>
+      <strong>Agent ID:</strong> ${found.agent}<br>
+      <strong>Buyer Name:</strong> ${found.buyer}<br>
+      <strong>Status:</strong> ${found.status}<br>
+      <button onclick="downloadPDF('${found.ref}','${found.agent}','${found.buyer}','${found.status}')">Download Styled PDF Receipt</button>
     `;
   } else {
-    resultDiv.innerHTML = '❌ Verification Failed. Check your Reference ID or Payment Reference.';
+    resultDiv.innerHTML = '❌ No matching transaction found. Check your Reference ID, Agent ID, or Buyer Name.';
   }
 }
 
-function downloadPDF(ref, agent, buyer, payRef) {
+function downloadPDF(ref, agent, buyer, status) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
@@ -102,7 +105,7 @@ function downloadPDF(ref, agent, buyer, payRef) {
   doc.text(`Reference ID: ${ref}`, 20, 60);
   doc.text(`Agent ID: ${agent}`, 20, 68);
   doc.text(`Buyer Name: ${buyer}`, 20, 76);
-  doc.text(`Payment Reference: ${payRef}`, 20, 84);
+  doc.text(`Status: ${status}`, 20, 84);
   doc.text(`Verified by: FSTL AI Layer`, 20, 92);
   doc.text(`Bank Confirmed: Yes`, 20, 100);
   doc.text(`Date: ${new Date().toLocaleString()}`, 20, 108);
