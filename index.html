@@ -1,263 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>FSTL – Unified Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FSTL Unified Portal – Retail & Institutional Verification, Agents, Payments, AI Search, White-Label">
-<style>
-body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#111;}
-nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10;}
-nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px;}
-section{background:#fff;margin:10px;padding:20px;border-radius:6px;}
-h1,h2,h3{margin-top:0;}
-input,button,select{width:100%;padding:10px;margin:6px 0;border-radius:4px;}
-button{background:#000;color:#fff;border:none;cursor:pointer;}
-.box{background:#eee;padding:15px;border-radius:4px;margin-top:10px;}
-footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px;}
-pre{background:#ddd;padding:10px;border-radius:4px;}
-</style>
+  <meta charset="UTF-8">
+  <title>FSTL – First Standard Title Limited</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FSTL – Digital Title Verification, Trust Infrastructure & Zero-Cost Revenue Engine">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #111; line-height: 1.6; }
+    nav { background: #000; padding: 15px; position: sticky; top: 0; z-index: 100; }
+    nav a { color: #fff; margin-right: 15px; text-decoration: none; font-weight: bold; }
+    section { padding: 40px 20px; background: #fff; margin-bottom: 10px; }
+    h1, h2 { color: #000; }
+    .cta { display: inline-block; padding: 12px 20px; background: #000; color: #fff; text-decoration: none; margin-top: 10px; }
+    .box { background: #eee; padding: 20px; margin-top: 15px; }
+    input, select, button { padding: 10px; margin: 5px 0; width: 100%; }
+    button { background: #000; color: #fff; border: none; cursor: pointer; }
+    button:hover { opacity: 0.9; }
+    footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 14px; }
+  </style>
 </head>
 <body>
 
 <nav>
-<a href="#home">Home</a>
-<a href="#agent">Agent ID</a>
-<a href="#verify">Verification</a>
-<a href="#search">AI Search</a>
-<a href="#payment">Payment</a>
-<a href="#institution">Institution API</a>
-<a href="#whiteLabel">Partner Dashboard</a>
+  <a href="#home">Home</a>
+  <a href="#search">AI Search</a>
+  <a href="#verify">Verify</a>
+  <a href="#agents">Agents</a>
+  <a href="#payment">Payments</a>
+  <a href="#institution">Institution</a>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-<h1>FSTL – First Standard Title Limited</h1>
-<div class="box">
-Operating Principle:<br>
-<strong>Input → Transaction → Output</strong><br>
-Zero Infrastructure • Bank-Centric • Immediate Revenue • Silent Scale
-</div>
+  <h1>First Standard Title Limited (FSTL)</h1>
+  <p>FSTL is Nigeria’s trust infrastructure for digital title verification, transaction validation, and institutional confidence.</p>
+  <div class="box">
+    <strong>Operating Principle:</strong><br>
+    Input → Transaction → Output<br>
+    Zero Infrastructure. Immediate Revenue. Silent Scale.
+  </div>
 </section>
 
-<!-- AGENT ID -->
-<section id="agent">
-<h2>Agent Identification</h2>
-<input id="agentName" placeholder="Agent Full Name">
-<button onclick="generateAgentSecure()">Generate Agent ID</button>
-<div class="box" id="agentResult"></div>
-</section>
-
-<!-- TRANSACTION VERIFICATION -->
-<section id="verify">
-<h2>Transaction Verification</h2>
-<input id="vAgent" placeholder="Agent ID">
-<input id="vBuyer" placeholder="Buyer / Client Name">
-<input id="vAmount" placeholder="Amount">
-<input id="vBank" placeholder="Bank Reference">
-<button onclick="generateVerificationSecure()">Generate Verification</button>
-<div class="box" id="verificationResult"></div>
-<div id="qr"></div>
-<button onclick="generatePDF()">Download Receipt (PDF)</button>
-</section>
-
-<!-- AI SEARCH -->
 <section id="search">
-<h2>AI Verification Search</h2>
-<input id="sAgent" placeholder="Agent ID">
-<input id="sBuyer" placeholder="Buyer Name">
-<input id="sAmount" placeholder="Amount">
-<input id="sBank" placeholder="Bank Reference">
-<button onclick="searchVerificationSecure()">Verify</button>
-<div class="box" id="searchResult"></div>
+  <h2>FSTL AI Search & Verification</h2>
+  <p>Search, validate, and confirm FSTL-issued receipts, transactions, and verification references.</p>
+  <div class="box">
+    <p><strong>Enter Verification Reference:</strong></p>
+    <input type="text" placeholder="FSTL-REF-XXXX" id="searchRef">
+    <button onclick="aiSearch()">Search</button>
+    <p id="searchResult" style="margin-top:10px;"></p>
+  </div>
 </section>
 
-<!-- DIRECT BANK PAYMENT -->
+<section id="verify">
+  <h2>Receipt & Transaction Verification</h2>
+  <p>Clients, agents, and institutions can independently verify transactions processed through FSTL.</p>
+  <div class="box" id="verifyBox">
+    ✔ Bank-confirmed receipts<br>
+    ✔ Agent commission validation<br>
+    ✔ Immutable audit trail
+  </div>
+</section>
+
+<section id="agents">
+  <h2>Agents & Miners</h2>
+  <p>Agents generate income immediately by onboarding clients, processing verifications, and submitting transactions.</p>
+  <div class="box">
+    <strong>Agent Benefits:</strong>
+    <ul>
+      <li>Immediate commission confirmation</li>
+      <li>Direct bank-backed receipts</li>
+      <li>No app install required (smartphone only)</li>
+      <li>Zero capital entry</li>
+    </ul>
+  </div>
+</section>
+
 <section id="payment">
-<h2>Direct Bank Payment</h2>
-<div class="box">
-Account Name: <strong>First Standard Title Limited</strong><br>
-Bank: <em>[YOUR BANK]</em><br>
-Account Number: <em>[XXXXXXX]</em><br>
-Use Verification Code as narration
-</div>
-</section>
-
-<!-- INSTITUTIONAL API -->
-<section id="institution">
-<h2>Institutional / Government API</h2>
-<pre>
-POST /verify
-{
-  agent_id,
-  buyer,
-  amount,
-  bank_ref
-}
-RESPONSE:
-{
-  status: VERIFIED,
-  verification_code,
-  timestamp
-}
-</pre>
-<h3>Live Verification (Simulated)</h3>
-<input id="apiAgent" placeholder="Agent ID">
-<input id="apiBuyer" placeholder="Buyer Name">
-<input id="apiAmount" placeholder="Amount">
-<input id="apiBankRef" placeholder="Bank Reference">
-<button onclick="postVerifyAPI()">POST /verify</button>
-<div class="box" id="apiResult"></div>
-<p style="font-size:12px;color:#555;">Simulation runs entirely client-side. No servers required.</p>
-</section>
-
-<!-- WHITE-LABEL / MULTI-AGENT -->
-<section id="whiteLabel">
-<h2>Agent / Partner Dashboard (White-Label)</h2>
-<p>Log in with your Agent ID to see your transactions and verify clients.</p>
-<input id="wlAgentID" placeholder="Agent ID">
-<button onclick="agentLogin()">Login</button>
-
-<div class="box" id="wlDashboard" style="display:none;">
-<h3>Welcome, <span id="wlAgentName"></span></h3>
-<p><strong>Your Branding:</strong></p>
-<div id="wlBranding" class="box"></div>
-
-<h4>Your Transactions:</h4>
-<div id="wlTransactions" class="box"></div>
-</div>
-</section>
-
-<footer>
-© FSTL • Unified Portal • Digital Trust & Verification
-</footer>
-
-<!-- Libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
-// ======== SECURITY & SESSION ========
-const SESSION_KEY="FSTL_SEC_SESSION";
-let currentVerification="";
-function createSession(){const nonce=Math.random().toString(36).substring(2,12);sessionStorage.setItem(SESSION_KEY,nonce);return nonce;}
-function validateSession(nonce){return sessionStorage.getItem(SESSION_KEY)===nonce;}
-function sanitizeInput(str){return str.replace(/[^a-zA-Z0-9-_ ]/g,"");}
-async function sha256(text){const data=new TextEncoder().encode(text);const hash=await crypto.subtle.digest("SHA-256",data);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");}
-
-// ======== AGENT ID ========
-async function generateAgentSecure(){
- let name=sanitizeInput(document.getElementById("agentName").value.trim());
- if(!name){document.getElementById("agentResult").innerText="Enter valid name"; return;}
- const nonce=createSession();
- const y=new Date().getFullYear();
- const h=await sha256(name+y+nonce);
- document.getElementById("agentResult").innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
-}
-
-// ======== VERIFICATION ========
-async function generateVerificationSecure(){
- let agent=sanitizeInput(document.getElementById("vAgent").value);
- let buyer=sanitizeInput(document.getElementById("vBuyer").value);
- let amount=sanitizeInput(document.getElementById("vAmount").value);
- let bank=sanitizeInput(document.getElementById("vBank").value);
- const nonce=createSession();
- if(!validateSession(nonce)){alert("Session invalid. Refresh page.");return;}
- const raw=`FSTL|${agent}|${buyer}|${amount}|${bank}|${nonce}`;
- const h=await sha256(raw);
- currentVerification="FSTL-"+h.slice(0,10).toUpperCase();
- document.getElementById("verificationResult").innerHTML="<strong>Verification Code:</strong> "+currentVerification;
- generateQR(currentVerification);
- recordTransaction(agent,currentVerification,buyer,amount);
-}
-
-// ======== QR CODE ========
-function generateQR(text){document.getElementById("qr").innerHTML="";new QRCode(document.getElementById("qr"),{text:text,width:120,height:120});}
-
-// ======== PDF RECEIPT ========
-function generatePDF(){
- const {jsPDF}=window.jspdf;
- const pdf=new jsPDF();
- pdf.setFontSize(14);
- pdf.text("FIRST STANDARD TITLE LIMITED",20,20);
- pdf.text("Verification Receipt",20,30);
- pdf.text("Agent ID: "+document.getElementById("vAgent").value,20,45);
- pdf.text("Buyer: "+document.getElementById("vBuyer").value,20,55);
- pdf.text("Amount: "+document.getElementById("vAmount").value,20,65);
- pdf.text("Bank Ref: "+document.getElementById("vBank").value,20,75);
- pdf.text("Verification Code:",20,90);
- pdf.text(currentVerification,20,100);
- pdf.save("FSTL-Receipt.pdf");
-}
-
-// ======== AI SEARCH ========
-async function searchVerificationSecure(){
- let agent=sanitizeInput(document.getElementById("sAgent").value);
- let buyer=sanitizeInput(document.getElementById("sBuyer").value);
- let amount=sanitizeInput(document.getElementById("sAmount").value);
- let bank=sanitizeInput(document.getElementById("sBank").value);
- const nonce=createSession();
- if(!validateSession(nonce)){alert("Session invalid. Refresh page."); return;}
- const raw=`FSTL|${agent}|${buyer}|${amount}|${bank}|${nonce}`;
- const h=await sha256(raw);
- document.getElementById("searchResult").innerHTML=`<strong>Status:</strong> VERIFIED<br><strong>Reference:</strong> FSTL-${h.slice(0,10).toUpperCase()}<br><strong>Settlement:</strong> Bank Confirmed`;
-}
-
-// ======== INSTITUTIONAL API SIMULATION ========
-async function simulateAPI(data){
- if(!data.agent_id || !data.buyer || !data.amount || !data.bank_ref){
-  return {status:"ERROR",message:"Missing field"};
- }
- const raw=`FSTL|${data.agent_id}|${data.buyer}|${data.amount}|${data.bank_ref}`;
- const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
- const hashArray = Array.from(new Uint8Array(hashBuffer));
- const hashHex = hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
- const verification_code="FSTL-"+hashHex.slice(0,10).toUpperCase();
- const timestamp = new Date().toISOString();
- return {status:"VERIFIED",verification_code,timestamp};
-}
-function postVerifyAPI(){
- const agent_id=document.getElementById("apiAgent").value;
- const buyer=document.getElementById("apiBuyer").value;
- const amount=document.getElementById("apiAmount").value;
- const bank_ref=document.getElementById("apiBankRef").value;
- simulateAPI({agent_id,buyer,amount,bank_ref}).then(res=>{
-  document.getElementById("apiResult").innerHTML=`<pre>${JSON.stringify(res,null,2)}</pre>`;
- });
-}
-
-// ======== WHITE-LABEL / MULTI-AGENT ========
-const agentDatabase={
-  "AG-2026-ABCDE": {name:"Agent A", logo:"https://via.placeholder.com/120x40?text=Agent+A", transactions:[]},
-  "AG-2026-FGHIJ": {name:"Agent B", logo:"https://via.placeholder.com/120x40?text=Agent+B", transactions:[]}
-};
-function agentLogin(){
-  const id=document.getElementById("wlAgentID").value.trim().toUpperCase();
-  if(agentDatabase[id]){
-    document.getElementById("wlDashboard").style.display="block";
-    document.getElementById("wlAgentName").innerText=agentDatabase[id].name;
-    document.getElementById("wlBranding").innerHTML=`<img src='${agentDatabase[id].logo}' alt='Logo'>`;
-    updateTransactions(id);
-  } else { alert("Agent ID not recognized."); }
-}
-function recordTransaction(agentID, verificationCode, buyer, amount){
-  if(agentDatabase[agentID]){
-    agentDatabase[agentID].transactions.push({code:verificationCode,buyer:buyer,amount:amount,timestamp:new Date().toISOString()});
-    if(document.getElementById("wlDashboard").style.display==="block"){updateTransactions(agentID);}
-  }
-}
-function updateTransactions(agentID){
-  const div=document.getElementById("wlTransactions");
-  const txs=agentDatabase[agentID].transactions;
-  if(txs.length===0){div.innerHTML="No transactions yet.";return;}
-  div.innerHTML="";
-  txs.forEach(t=>{div.innerHTML+=`<strong>${t.code}</strong> | Buyer: ${t.buyer} | Amount: ${t.amount} | ${t.timestamp}<br>`;});
-}
-
-// ======== ANTI-TAMPER ========
-document.addEventListener('contextmenu', e=>e.preventDefault());
-document.addEventListener('keydown', function(e){if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74))){e.preventDefault();}});
-</script>
-
-</body>
-</html>
+  <h2>Pay FSTL (Direct Bank Transfer)</h2>
+  <p>All payments are made directly to the FSTL bank account. No third-party processors. No intermediaries.</p>
+  <div class="box">
+    <strong>Payment Instructions:</strong><br><br>
+    Bank: <em>[Your Bank Name]</em><br>
+    Account Name: <em>First Standard Title Limited</em><br>
+    Account Number:
