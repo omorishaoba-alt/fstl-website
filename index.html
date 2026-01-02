@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>FSTL – Unified Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FSTL Unified Portal – Retail & Institutional Verification, Agents, Payments, AI Search">
+<meta name="description" content="FSTL Unified Portal – Retail & Institutional Verification, Agents, Payments, AI Search, White-Label">
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#111;}
 nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10;}
@@ -27,6 +27,7 @@ pre{background:#ddd;padding:10px;border-radius:4px;}
 <a href="#search">AI Search</a>
 <a href="#payment">Payment</a>
 <a href="#institution">Institution API</a>
+<a href="#whiteLabel">Partner Dashboard</a>
 </nav>
 
 <!-- HOME -->
@@ -100,7 +101,6 @@ RESPONSE:
   timestamp
 }
 </pre>
-
 <h3>Live Verification (Simulated)</h3>
 <input id="apiAgent" placeholder="Agent ID">
 <input id="apiBuyer" placeholder="Buyer Name">
@@ -109,6 +109,23 @@ RESPONSE:
 <button onclick="postVerifyAPI()">POST /verify</button>
 <div class="box" id="apiResult"></div>
 <p style="font-size:12px;color:#555;">Simulation runs entirely client-side. No servers required.</p>
+</section>
+
+<!-- WHITE-LABEL / MULTI-AGENT -->
+<section id="whiteLabel">
+<h2>Agent / Partner Dashboard (White-Label)</h2>
+<p>Log in with your Agent ID to see your transactions and verify clients.</p>
+<input id="wlAgentID" placeholder="Agent ID">
+<button onclick="agentLogin()">Login</button>
+
+<div class="box" id="wlDashboard" style="display:none;">
+<h3>Welcome, <span id="wlAgentName"></span></h3>
+<p><strong>Your Branding:</strong></p>
+<div id="wlBranding" class="box"></div>
+
+<h4>Your Transactions:</h4>
+<div id="wlTransactions" class="box"></div>
+</div>
 </section>
 
 <footer>
@@ -123,26 +140,10 @@ RESPONSE:
 // ======== SECURITY & SESSION ========
 const SESSION_KEY="FSTL_SEC_SESSION";
 let currentVerification="";
-
-function createSession(){
-    const nonce=Math.random().toString(36).substring(2,12);
-    sessionStorage.setItem(SESSION_KEY,nonce);
-    return nonce;
-}
-
-function validateSession(nonce){
-    return sessionStorage.getItem(SESSION_KEY)===nonce;
-}
-
-function sanitizeInput(str){
-    return str.replace(/[^a-zA-Z0-9-_ ]/g,"");
-}
-
-async function sha256(text){
- const data=new TextEncoder().encode(text);
- const hash=await crypto.subtle.digest("SHA-256",data);
- return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
-}
+function createSession(){const nonce=Math.random().toString(36).substring(2,12);sessionStorage.setItem(SESSION_KEY,nonce);return nonce;}
+function validateSession(nonce){return sessionStorage.getItem(SESSION_KEY)===nonce;}
+function sanitizeInput(str){return str.replace(/[^a-zA-Z0-9-_ ]/g,"");}
+async function sha256(text){const data=new TextEncoder().encode(text);const hash=await crypto.subtle.digest("SHA-256",data);return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");}
 
 // ======== AGENT ID ========
 async function generateAgentSecure(){
@@ -167,13 +168,11 @@ async function generateVerificationSecure(){
  currentVerification="FSTL-"+h.slice(0,10).toUpperCase();
  document.getElementById("verificationResult").innerHTML="<strong>Verification Code:</strong> "+currentVerification;
  generateQR(currentVerification);
+ recordTransaction(agent,currentVerification,buyer,amount);
 }
 
 // ======== QR CODE ========
-function generateQR(text){
- document.getElementById("qr").innerHTML="";
- new QRCode(document.getElementById("qr"),{text:text,width:120,height:120});
-}
+function generateQR(text){document.getElementById("qr").innerHTML="";new QRCode(document.getElementById("qr"),{text:text,width:120,height:120});}
 
 // ======== PDF RECEIPT ========
 function generatePDF(){
@@ -217,26 +216,48 @@ async function simulateAPI(data){
  const timestamp = new Date().toISOString();
  return {status:"VERIFIED",verification_code,timestamp};
 }
-
 function postVerifyAPI(){
  const agent_id=document.getElementById("apiAgent").value;
  const buyer=document.getElementById("apiBuyer").value;
  const amount=document.getElementById("apiAmount").value;
  const bank_ref=document.getElementById("apiBankRef").value;
-
- simulateAPI({agent_id,buyer,amount,bank_ref})
- .then(res=>{
+ simulateAPI({agent_id,buyer,amount,bank_ref}).then(res=>{
   document.getElementById("apiResult").innerHTML=`<pre>${JSON.stringify(res,null,2)}</pre>`;
  });
 }
 
+// ======== WHITE-LABEL / MULTI-AGENT ========
+const agentDatabase={
+  "AG-2026-ABCDE": {name:"Agent A", logo:"https://via.placeholder.com/120x40?text=Agent+A", transactions:[]},
+  "AG-2026-FGHIJ": {name:"Agent B", logo:"https://via.placeholder.com/120x40?text=Agent+B", transactions:[]}
+};
+function agentLogin(){
+  const id=document.getElementById("wlAgentID").value.trim().toUpperCase();
+  if(agentDatabase[id]){
+    document.getElementById("wlDashboard").style.display="block";
+    document.getElementById("wlAgentName").innerText=agentDatabase[id].name;
+    document.getElementById("wlBranding").innerHTML=`<img src='${agentDatabase[id].logo}' alt='Logo'>`;
+    updateTransactions(id);
+  } else { alert("Agent ID not recognized."); }
+}
+function recordTransaction(agentID, verificationCode, buyer, amount){
+  if(agentDatabase[agentID]){
+    agentDatabase[agentID].transactions.push({code:verificationCode,buyer:buyer,amount:amount,timestamp:new Date().toISOString()});
+    if(document.getElementById("wlDashboard").style.display==="block"){updateTransactions(agentID);}
+  }
+}
+function updateTransactions(agentID){
+  const div=document.getElementById("wlTransactions");
+  const txs=agentDatabase[agentID].transactions;
+  if(txs.length===0){div.innerHTML="No transactions yet.";return;}
+  div.innerHTML="";
+  txs.forEach(t=>{div.innerHTML+=`<strong>${t.code}</strong> | Buyer: ${t.buyer} | Amount: ${t.amount} | ${t.timestamp}<br>`;});
+}
+
 // ======== ANTI-TAMPER ========
 document.addEventListener('contextmenu', e=>e.preventDefault());
-document.addEventListener('keydown', function(e){
- if(e.keyCode==123 || (e.ctrlKey && e.shiftKey && (e.keyCode==73 || e.keyCode==74))){
-  e.preventDefault();
- }
-});
+document.addEventListener('keydown', function(e){if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74))){e.preventDefault();}});
 </script>
+
 </body>
 </html>
