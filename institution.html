@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FSTL – Institutional Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FSTL Institutional Verification, Bulk API access">
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f4f4f4;color:#111;}
+nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10;}
+nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px;}
+section{background:#fff;margin:10px;padding:20px;border-radius:6px;}
+h1,h2{margin-top:0;}
+input,button{width:100%;padding:10px;margin:6px 0;}
+button{background:#000;color:#fff;border:none;cursor:pointer;}
+.box{background:#eee;padding:15px;border-radius:4px;}
+footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px;}
+pre{background:#ddd;padding:10px;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#api">API Docs</a>
+<a href="#bulk">Bulk Verification</a>
+<a href="#reports">Reports</a>
+<a href="index.html">Retail Portal</a>
+</nav>
+
+<section id="home">
+<h1>FSTL Institutional Portal</h1>
+<div class="box">
+Secure verification and API access for government, banks, and investors.<br>
+Password-protected. Audit-ready. Direct bank settlement.
+</div>
+</section>
+
+<section id="api">
+<h2>API Documentation</h2>
+<pre>
+POST /verify
+{
+  agent_id,
+  buyer,
+  amount,
+  bank_ref
+}
+
+RESPONSE:
+{
+  status: VERIFIED,
+  verification_code,
+  timestamp
+}
+</pre>
+<p class="small">Serverless / optional backend connection possible.</p>
+</section>
+
+<section id="bulk">
+<h2>Bulk Verification</h2>
+<input type="file" id="bulkFile" accept=".csv">
+<button onclick="processBulk()">Process Bulk CSV</button>
+<div class="box" id="bulkResult"></div>
+</section>
+
+<section id="reports">
+<h2>Reports & CSV Export</h2>
+<button onclick="exportAgentCSV()">Download All Agent Data</button>
+<div class="box" id="reportPanel"></div>
+</section>
+
+<footer>
+© FSTL Institutional Portal • Digital Verification Infrastructure
+</footer>
+
+<script>
+// Admin password
+const ADMIN_PASSWORD="fstlinst123";
+
+// Dummy CSV / Bulk processing placeholder
+function processBulk(){
+ const f=document.getElementById("bulkFile").files[0];
+ if(!f){alert("Select a CSV file"); return;}
+ bulkResult.innerHTML="File processed. Verification codes generated per row (simulation).";
+}
+
+// Dummy CSV Export
+function exportAgentCSV(){ alert("CSV export simulated for institutional use."); }
+</script>
+</body>
+</html>
