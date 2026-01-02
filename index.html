@@ -6,17 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FSTL – Digital Title Verification, Trust Infrastructure & Zero-Cost Revenue Engine">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #111; line-height: 1.6; }
-    nav { background: #000; padding: 15px; position: sticky; top: 0; z-index: 100; }
-    nav a { color: #fff; margin-right: 15px; text-decoration: none; font-weight: bold; }
-    section { padding: 40px 20px; background: #fff; margin-bottom: 10px; }
-    h1, h2 { color: #000; }
-    .cta { display: inline-block; padding: 12px 20px; background: #000; color: #fff; text-decoration: none; margin-top: 10px; }
-    .box { background: #eee; padding: 20px; margin-top: 15px; }
-    input, select, button { padding: 10px; margin: 5px 0; width: 100%; }
-    button { background: #000; color: #fff; border: none; cursor: pointer; }
-    button:hover { opacity: 0.9; }
-    footer { background: #000; color: #fff; text-align: center; padding: 20px; font-size: 14px; }
+    body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#111; line-height:1.6; }
+    nav { background:#000; padding:15px; position:sticky; top:0; z-index:100; }
+    nav a { color:#fff; margin-right:15px; text-decoration:none; font-weight:bold; }
+    section { padding:40px 20px; background:#fff; margin-bottom:10px; }
+    h1,h2 { color:#000; }
+    .box { background:#eee; padding:20px; margin-top:15px; }
+    input,button { padding:10px; margin:5px 0; width:100%; }
+    button { background:#000; color:#fff; border:none; cursor:pointer; }
+    button:hover { opacity:0.9; }
+    footer { background:#000; color:#fff; text-align:center; padding:20px; font-size:14px; }
   </style>
 </head>
 <body>
@@ -42,18 +41,16 @@
 
 <section id="search">
   <h2>FSTL AI Search & Verification</h2>
-  <p>Search, validate, and confirm FSTL-issued receipts, transactions, and verification references.</p>
+  <p>Search, validate, and confirm FSTL-issued receipts and verification references instantly.</p>
   <div class="box">
-    <p><strong>Enter Verification Reference:</strong></p>
-    <input type="text" placeholder="FSTL-REF-XXXX" id="searchRef">
-    <button onclick="aiSearch()">Search</button>
+    <input type="text" placeholder="Enter Reference ID" id="searchRef">
+    <button onclick="searchUI()">Search</button>
     <p id="searchResult" style="margin-top:10px;"></p>
   </div>
 </section>
 
 <section id="verify">
   <h2>Receipt & Transaction Verification</h2>
-  <p>Clients, agents, and institutions can independently verify transactions processed through FSTL.</p>
   <div class="box" id="verifyBox">
     ✔ Bank-confirmed receipts<br>
     ✔ Agent commission validation<br>
@@ -63,13 +60,11 @@
 
 <section id="agents">
   <h2>Agents & Miners</h2>
-  <p>Agents generate income immediately by onboarding clients, processing verifications, and submitting transactions.</p>
   <div class="box">
-    <strong>Agent Benefits:</strong>
     <ul>
       <li>Immediate commission confirmation</li>
       <li>Direct bank-backed receipts</li>
-      <li>No app install required (smartphone only)</li>
+      <li>No app install required</li>
       <li>Zero capital entry</li>
     </ul>
   </div>
@@ -77,9 +72,94 @@
 
 <section id="payment">
   <h2>Pay FSTL (Direct Bank Transfer)</h2>
-  <p>All payments are made directly to the FSTL bank account. No third-party processors. No intermediaries.</p>
   <div class="box">
-    <strong>Payment Instructions:</strong><br><br>
     Bank: <em>[Your Bank Name]</em><br>
     Account Name: <em>First Standard Title Limited</em><br>
-    Account Number:
+    Account Number: <em>[XXXXXXX]</em><br>
+    <strong>Use your Reference ID as Narration</strong>
+  </div>
+</section>
+
+<section id="institution">
+  <h2>Institutional Verification Portal</h2>
+  <p>Restricted to authorized institutional users. Enter credentials to verify transactions.</p>
+
+  <input id="instAgent" placeholder="Institution Agent ID">
+  <input id="instKey" placeholder="Access Key / PIN">
+  <input id="instBuyer" placeholder="Buyer Name">
+  <input id="instAmount" placeholder="Amount">
+  <input id="instBankRef" placeholder="Bank Reference">
+  <button onclick="institutionUI()">Verify Transaction</button>
+
+  <div class="box" id="institutionResult"></div>
+</section>
+
+<footer>
+  © First Standard Title Limited (FSTL)<br>
+  Digital Trust • Verification • Infrastructure
+</footer>
+
+<script>
+  // ===== Hidden FSTL API =====
+  const transactionDB = [];
+  const authorizedInstitutions = { "INST-2026-XYZ":"PIN1234", "INST-2026-ABC":"PIN5678" };
+
+  async function generateVerification(agent,buyer,amount,bankRef){
+    const raw = `FSTL|${agent}|${buyer}|${amount}|${bankRef}|${Date.now()}`;
+    const buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
+    const hash = Array.from(new Uint8Array(buffer)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    return "FSTL-" + hash.slice(0,10).toUpperCase();
+  }
+
+  async function submitTransaction(agent,buyer,amount,bankRef){
+    const code = await generateVerification(agent,buyer,amount,bankRef);
+    const timestamp = new Date().toISOString();
+    transactionDB.push({agent,buyer,amount,bankRef,verificationCode:code,timestamp});
+    return {status:"VERIFIED", verificationCode:code, timestamp};
+  }
+
+  async function institutionalVerify(agent,key,buyer,amount,bankRef){
+    if(!authorizedInstitutions[agent] || authorizedInstitutions[agent]!==key){
+      return {status:"ACCESS_DENIED"};
+    }
+    return await submitTransaction(agent,buyer,amount,bankRef);
+  }
+
+  function searchTransaction(ref){
+    const tx = transactionDB.find(t=>t.verificationCode===ref.toUpperCase());
+    return tx ? {...tx,status:"VERIFIED"} : {status:"NOT_FOUND"};
+  }
+
+  // ===== UI FUNCTIONS =====
+  async function searchUI(){
+    const ref = document.getElementById("searchRef").value.trim();
+    if(!ref){ document.getElementById("searchResult").innerText="Enter Reference ID"; return; }
+    const result = searchTransaction(ref);
+    if(result.status==="VERIFIED"){
+      document.getElementById("searchResult").innerHTML = `🔒 VERIFIED<br>Verification Code: ${result.verificationCode}<br>Timestamp: ${result.timestamp}`;
+    } else {
+      document.getElementById("searchResult").innerText="Reference NOT FOUND";
+    }
+  }
+
+  async function institutionUI(){
+    const agent = document.getElementById("instAgent").value.trim().toUpperCase();
+    const key = document.getElementById("instKey").value.trim();
+    const buyer = document.getElementById("instBuyer").value.trim();
+    const amount = document.getElementById("instAmount").value.trim();
+    const bank = document.getElementById("instBankRef").value.trim();
+
+    const res = await institutionalVerify(agent,key,buyer,amount,bank);
+    if(res.status==="ACCESS_DENIED"){
+      document.getElementById("institutionResult").innerHTML="<strong>Access Denied</strong>";
+    } else {
+      document.getElementById("institutionResult").innerHTML=
+        `<strong>Status:</strong> VERIFIED<br>` +
+        `<strong>Verification Code:</strong> ${res.verificationCode}<br>` +
+        `<strong>Timestamp:</strong> ${res.timestamp}`;
+    }
+  }
+</script>
+
+</body>
+</html>
