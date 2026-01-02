@@ -18,6 +18,8 @@ input,button{width:100%;padding:10px;margin:6px 0}
 button{background:#000;color:#fff;border:none;cursor:pointer}
 .box{background:#eee;padding:15px;border-radius:4px}
 footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+table,th,td{border:1px solid #ccc;padding:5px;text-align:left}
 .small{font-size:13px;color:#444}
 </style>
 
@@ -138,15 +140,21 @@ Digital Trust • Verification • Infrastructure
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-// Display white-label brand
+// White-label brand display
 document.getElementById("brandTitle").innerText = BRAND;
 
-// SHA-256 hashing function
+// SHA-256 hashing
 async function sha256(text){
  const data=new TextEncoder().encode(text);
  const hash=await crypto.subtle.digest("SHA-256",data);
  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
+
+// Initialize agent database
+if(!localStorage.getItem("fstlAgents")) localStorage.setItem("fstlAgents",JSON.stringify({}));
+
+// Commission rate
+const COMMISSION_RATE = 0.05;
 
 // Agent ID generation
 async function generateAgent(){
@@ -157,7 +165,7 @@ async function generateAgent(){
  agentResult.innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
 }
 
-// Verification code logic
+// Verification
 let currentVerification="";
 async function generateVerification(){
  const raw=`FSTL|${vAgent.value}|${vBuyer.value}|${vAmount.value}|${vBank.value}`;
@@ -165,6 +173,7 @@ async function generateVerification(){
  currentVerification="FSTL-"+h.slice(0,10).toUpperCase();
  verificationResult.innerHTML="<strong>Verification Code:</strong><br>"+currentVerification;
  generateQR();
+ recordTransaction(vAgent.value,vAmount.value);
 }
 
 // QR Code
@@ -195,48 +204,60 @@ function generatePDF(){
  pdf.text("FIRST STANDARD TITLE LIMITED",20,20);
  pdf.setFontSize(10);
  pdf.text("Verification Receipt",20,30);
-
  pdf.text("Agent ID: "+vAgent.value,20,45);
  pdf.text("Buyer: "+vBuyer.value,20,55);
  pdf.text("Amount: "+vAmount.value,20,65);
  pdf.text("Bank Ref: "+vBank.value,20,75);
  pdf.text("Verification Code:",20,90);
  pdf.text(currentVerification,20,100);
-
  pdf.text("Funds transferred directly to FSTL bank account.",20,120);
  pdf.text("This receipt confirms verification, not custody.",20,130);
-
  pdf.save("FSTL-Receipt.pdf");
 }
 
-// Automation / Commissions
-function calculateCommission(amount){
- const rate=0.05;
- return (parseFloat(amount)||0)*rate;
-}
-function generateAgentReport(agentID,totalTransactions,totalEarnings){
- const {jsPDF}=window.jspdf;
- const pdf=new jsPDF();
- pdf.setFontSize(14);
- pdf.text("FSTL Agent Report",20,20);
- pdf.setFontSize(10);
- pdf.text(`Agent ID: ${agentID}`,20,35);
- pdf.text(`Total Transactions: ${totalTransactions}`,20,45);
- pdf.text(`Total Earnings: ₦${totalEarnings.toFixed(2)}`,20,55);
- pdf.save(`FSTL-AgentReport-${agentID}.pdf`);
+// Commission calculation
+function calculateCommission(amount){ return (parseFloat(amount)||0)*COMMISSION_RATE; }
+
+// Record transaction
+function recordTransaction(agentID,amount){
+ const db=JSON.parse(localStorage.getItem("fstlAgents"));
+ if(!db[agentID]) db[agentID]={transactions:0,totalEarnings:0};
+ db[agentID].transactions+=1;
+ db[agentID].totalEarnings+=calculateCommission(amount);
+ localStorage.setItem("fstlAgents",JSON.stringify(db));
 }
 
-// Admin Mode
+// Export CSV
+function exportAgentCSV(){
+ const db=JSON.parse(localStorage.getItem("fstlAgents"));
+ let csv="Agent ID,Transactions,Total Earnings\n";
+ for(const id in db) csv+=`${id},${db[id].transactions},${db[id].totalEarnings.toFixed(2)}\n`;
+ const blob=new Blob([csv],{type:"text/csv"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="FSTL-Agent-Report.csv";
+ a.click();
+ URL.revokeObjectURL(url);
+}
+
+// Admin dashboard
 const ADMIN_PASSWORD="fstladmin123";
 function enterAdminMode(){
  const pass=prompt("Enter Admin Password:");
  if(pass===ADMIN_PASSWORD){
    adminPanel.style.display="block";
-   adminPanel.innerHTML="<strong>Admin Dashboard Activated</strong><br>"+
-                        "Total Transactions: 0<br>Total Earnings: 0<br>(Demo)";
+   const db=JSON.parse(localStorage.getItem("fstlAgents"));
+   let html="<strong>Admin Dashboard Activated</strong><br><br>";
+   html+="<table><tr><th>Agent ID</th><th>Transactions</th><th>Total Earnings (₦)</th></tr>";
+   for(const id in db){
+     html+=`<tr><td>${id}</td><td>${db[id].transactions}</td><td>${db[id].totalEarnings.toFixed(2)}</td></tr>`;
+   }
+   html+="</table><br><button onclick='exportAgentCSV()'>Export All Agent Data (CSV)</button>";
+   adminPanel.innerHTML=html;
  } else alert("Access Denied");
 }
-
 </script>
+
 </body>
 </html>
