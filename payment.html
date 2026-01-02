@@ -1,39 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>FSTL Payments</title>
+<title>Pay FSTL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body { font-family: Arial,sans-serif; margin:0; background:#f5f5f5; }
-nav { background:#000; padding:15px; position:sticky; top:0; }
-nav a { color:#fff; margin-right:15px; text-decoration:none; font-weight:bold; }
-section { padding:40px 20px; background:#fff; margin-bottom:10px; }
-footer { background:#000; color:#fff; text-align:center; padding:20px; font-size:14px; }
+body{font-family:Arial;margin:0;background:#f5f5f5}
+nav{background:#000;padding:15px}
+nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
+section{padding:40px 20px;background:#fff;margin:10px}
+.box{background:#eee;padding:20px;margin-top:15px}
+footer{background:#000;color:#fff;text-align:center;padding:20px;font-size:14px}
 </style>
 </head>
+
 <body>
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="search.html">AI Search</a>
-  <a href="verify.html">Verify</a>
+  <a href="search.html">Verify</a>
   <a href="agents.html">Agents</a>
-  <a href="payment.html">Payments</a>
+  <a href="payment.html">Payment</a>
 </nav>
 
 <section>
-  <h2>Pay FSTL (Direct Bank Transfer)</h2>
-  <p>All payments are made directly to FSTL bank account. No intermediaries.</p>
+<h2>Payment to FSTL</h2>
+<p>
+All payments are made <strong>directly to FSTL’s bank account</strong>.
+No third-party processors are used.
+</p>
 
-  <p><strong>Bank:</strong> [Your Bank Name]<br>
-     <strong>Account Name:</strong> First Standard Title Limited<br>
-     <strong>Account Number:</strong> [XXXXXXX]<br>
-     <strong>Narration:</strong> Use your FSTL Reference ID</p>
+<div class="box">
+<strong>Payment Instructions</strong><br><br>
+Bank: [Your Bank Name]<br>
+Account Name: First Standard Title Limited<br>
+Account Number: [XXXXXXX]<br><br>
+<strong>Payment Narration:</strong><br>
+AgentID | BuyerName | Service
+</div>
+
+<p>
+After payment, proceed to <a href="search.html">Verification</a>
+to confirm and generate your digital receipt.
+</p>
 </section>
 
 <footer>
-  © First Standard Title Limited (FSTL)
+© First Standard Title Limited (FSTL)
 </footer>
 
 </body>
