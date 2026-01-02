@@ -2,32 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FSTL – Digital Verification Infrastructure</title>
+<title>FSTL – Retail Verification</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FSTL – Trusted verification, agent commissions, and receipts.">
-<meta name="keywords" content="FSTL, Verification, Agents, Receipts, Trust, Digital">
-<meta name="robots" content="index, follow">
-
+<meta name="description" content="FSTL – Retail verification, agent and client interface">
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#111}
-nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10}
-nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px}
-section{background:#fff;margin:10px;padding:20px;border-radius:6px}
-h1,h2{margin-top:0}
-input,button{width:100%;padding:10px;margin:6px 0}
-button{background:#000;color:#fff;border:none;cursor:pointer}
-.box{background:#eee;padding:15px;border-radius:4px}
-footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px}
-table{width:100%;border-collapse:collapse;margin-top:10px}
-table,th,td{border:1px solid #ccc;padding:5px;text-align:left}
-.small{font-size:13px;color:#444}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f4f4;color:#111;}
+nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10;}
+nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px;}
+section{background:#fff;margin:10px;padding:20px;border-radius:6px;}
+h1,h2{margin-top:0;}
+input,button{width:100%;padding:10px;margin:6px 0;}
+button{background:#000;color:#fff;border:none;cursor:pointer;}
+.box{background:#eee;padding:15px;border-radius:4px;}
+footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px;}
 </style>
-
-<script>
-const BRAND = new URLSearchParams(window.location.search).get("brand") || "FSTL";
-document.title = BRAND + " – Verification System";
-</script>
-
 </head>
 <body>
 
@@ -37,16 +25,13 @@ document.title = BRAND + " – Verification System";
 <a href="#verify">Verify</a>
 <a href="#search">Search</a>
 <a href="#payment">Payment</a>
-<a href="#api">API</a>
-<a href="#legal">Legal</a>
-<a href="#admin">Admin</a>
+<a href="institution.html">Institution Portal</a>
 </nav>
 
 <section id="home">
-<h1 id="brandTitle"></h1>
-<p><strong>Digital Trust & Verification Infrastructure</strong></p>
+<h1>FSTL – Retail Interface</h1>
 <div class="box">
-INPUT → TRANSACTION → OUTPUT<br>
+Input → Transaction → Output<br>
 Zero Infrastructure • Bank-Centric • Silent Scale
 </div>
 </section>
@@ -65,7 +50,6 @@ Zero Infrastructure • Bank-Centric • Silent Scale
 <input id="vAmount" placeholder="Amount">
 <input id="vBank" placeholder="Bank Reference">
 <button onclick="generateVerification()">Generate Verification</button>
-
 <div class="box" id="verificationResult"></div>
 <div id="qr"></div>
 <button onclick="generatePDF()">Download Receipt (PDF)</button>
@@ -79,7 +63,6 @@ Zero Infrastructure • Bank-Centric • Silent Scale
 <input id="sBank" placeholder="Bank Reference">
 <button onclick="searchVerification()">Verify</button>
 <div class="box" id="searchResult"></div>
-<p class="small">Deterministic AI-backed confirmation</p>
 </section>
 
 <section id="payment">
@@ -87,110 +70,55 @@ Zero Infrastructure • Bank-Centric • Silent Scale
 <div class="box">
 Account Name: First Standard Title Limited<br>
 Bank: [YOUR BANK]<br>
-Account Number: [XXXXXXX]<br><br>
+Account Number: [XXXXXXX]<br>
 Use Verification Code as narration
 </div>
 </section>
 
-<section id="api">
-<h2>Partner API (Documented)</h2>
-<pre>
-POST /verify
-{
- agent_id,
- buyer,
- amount,
- bank_ref
-}
-
-RESPONSE:
-{
- status: VERIFIED,
- verification_code,
- timestamp
-}
-</pre>
-<p class="small">Institutional access only</p>
-</section>
-
-<section id="legal">
-<h2>Governance & Legal Notice</h2>
-<div class="box">
-FSTL only issues verification codes and receipts.<br>
-All payments go directly to FSTL bank accounts.<br>
-No custody of funds is held.<br>
-All actions are auditable, verifiable, and compliant.
-</div>
-</section>
-
-<section id="admin">
-<h2>Admin Dashboard</h2>
-<button onclick="enterAdminMode()">Enter Admin Mode</button>
-<div class="box" id="adminPanel" style="display:none"></div>
-</section>
-
 <footer>
-© First Standard Title Limited (FSTL)<br>
-Digital Trust • Verification • Infrastructure
+© FSTL • Retail Layer • Digital Trust & Verification
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <script>
-// White-label display
-document.getElementById("brandTitle").innerText = BRAND;
-
-// SHA-256 hashing
+// Core deterministic logic shared across layers
 async function sha256(text){
  const data=new TextEncoder().encode(text);
  const hash=await crypto.subtle.digest("SHA-256",data);
  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
+let currentVerification="";
 
-// Initialize agent database
-if(!localStorage.getItem("fstlAgents")) localStorage.setItem("fstlAgents",JSON.stringify({}));
-
-const COMMISSION_RATE = 0.05;
-
-// Generate Agent ID
+// Generate Agent
 async function generateAgent(){
- const name=agentName.value.trim();
- if(!name){agentResult.innerText="Enter agent name";return;}
+ const name=document.getElementById("agentName").value.trim();
+ if(!name){document.getElementById("agentResult").innerText="Enter name";return;}
  const y=new Date().getFullYear();
  const h=await sha256(name+y);
- agentResult.innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
+ document.getElementById("agentResult").innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
 }
 
-// Verification
-let currentVerification="";
+// Generate Verification Code
 async function generateVerification(){
- const raw=`FSTL|${vAgent.value}|${vBuyer.value}|${vAmount.value}|${vBank.value}`;
+ const raw=`FSTL|${document.getElementById("vAgent").value}|${document.getElementById("vBuyer").value}|${document.getElementById("vAmount").value}|${document.getElementById("vBank").value}`;
  const h=await sha256(raw);
  currentVerification="FSTL-"+h.slice(0,10).toUpperCase();
- verificationResult.innerHTML="<strong>Verification Code:</strong><br>"+currentVerification;
+ document.getElementById("verificationResult").innerHTML="<strong>Verification Code:</strong> "+currentVerification;
  generateQR();
- recordTransaction(vAgent.value,vAmount.value);
 }
 
 // QR Code
 function generateQR(){
  document.getElementById("qr").innerHTML="";
- new QRCode(document.getElementById("qr"),{
-  text:location.origin+"/#search",
-  width:120,
-  height:120
- });
+new QRCode(document.getElementById("qr"),{text:location.origin+"/#search",width:120,height:120});
 }
 
 // AI Search
 async function searchVerification(){
- const raw=`FSTL|${sAgent.value}|${sBuyer.value}|${sAmount.value}|${sBank.value}`;
+ const raw=`FSTL|${document.getElementById("sAgent").value}|${document.getElementById("sBuyer").value}|${document.getElementById("sAmount").value}|${document.getElementById("sBank").value}`;
  const h=await sha256(raw);
- searchResult.innerHTML=
- "<strong>Status:</strong> VERIFIED<br>"+
- "<strong>Reference:</strong> FSTL-"+h.slice(0,10).toUpperCase()+"<br>"+
- "<strong>Settlement:</strong> Bank Confirmed";
+ document.getElementById("searchResult").innerHTML="<strong>Status:</strong> VERIFIED<br><strong>Reference:</strong> FSTL-"+h.slice(0,10).toUpperCase()+"<br><strong>Settlement:</strong> Bank Confirmed";
 }
 
 // PDF Receipts
@@ -199,62 +127,15 @@ function generatePDF(){
  const pdf=new jsPDF();
  pdf.setFontSize(14);
  pdf.text("FIRST STANDARD TITLE LIMITED",20,20);
- pdf.setFontSize(10);
  pdf.text("Verification Receipt",20,30);
- pdf.text("Agent ID: "+vAgent.value,20,45);
- pdf.text("Buyer: "+vBuyer.value,20,55);
- pdf.text("Amount: "+vAmount.value,20,65);
- pdf.text("Bank Ref: "+vBank.value,20,75);
+ pdf.text("Agent ID: "+document.getElementById("vAgent").value,20,45);
+ pdf.text("Buyer: "+document.getElementById("vBuyer").value,20,55);
+ pdf.text("Amount: "+document.getElementById("vAmount").value,20,65);
+ pdf.text("Bank Ref: "+document.getElementById("vBank").value,20,75);
  pdf.text("Verification Code:",20,90);
  pdf.text(currentVerification,20,100);
- pdf.text("Funds transferred directly to FSTL bank account.",20,120);
- pdf.text("This receipt confirms verification, not custody.",20,130);
  pdf.save("FSTL-Receipt.pdf");
 }
-
-// Commission calculation
-function calculateCommission(amount){ return (parseFloat(amount)||0)*COMMISSION_RATE; }
-
-// Record transaction
-function recordTransaction(agentID,amount){
- const db=JSON.parse(localStorage.getItem("fstlAgents"));
- if(!db[agentID]) db[agentID]={transactions:0,totalEarnings:0};
- db[agentID].transactions+=1;
- db[agentID].totalEarnings+=calculateCommission(amount);
- localStorage.setItem("fstlAgents",JSON.stringify(db));
-}
-
-// Export CSV
-function exportAgentCSV(){
- const db=JSON.parse(localStorage.getItem("fstlAgents"));
- let csv="Agent ID,Transactions,Total Earnings\n";
- for(const id in db) csv+=`${id},${db[id].transactions},${db[id].totalEarnings.toFixed(2)}\n`;
- const blob=new Blob([csv],{type:"text/csv"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;
- a.download="FSTL-Agent-Report.csv";
- a.click();
- URL.revokeObjectURL(url);
-}
-
-// Admin dashboard
-const ADMIN_PASSWORD="fstladmin123";
-function enterAdminMode(){
- const pass=prompt("Enter Admin Password:");
- if(pass===ADMIN_PASSWORD){
-   adminPanel.style.display="block";
-   const db=JSON.parse(localStorage.getItem("fstlAgents"));
-   let html="<strong>Admin Dashboard Activated</strong><br><br>";
-   html+="<table><tr><th>Agent ID</th><th>Transactions</th><th>Total Earnings (₦)</th></tr>";
-   for(const id in db){
-     html+=`<tr><td>${id}</td><td>${db[id].transactions}</td><td>${db[id].totalEarnings.toFixed(2)}</td></tr>`;
-   }
-   html+="</table><br><button onclick='exportAgentCSV()'>Export All Agent Data (CSV)</button>";
-   adminPanel.innerHTML=html;
- } else alert("Access Denied");
-}
 </script>
-
 </body>
-</html>,
+</html>
