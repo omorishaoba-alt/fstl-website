@@ -43,7 +43,7 @@ Zero Infrastructure • Bank-Centric • Immediate Revenue • Silent Scale
 <section id="agent">
 <h2>Agent Identification</h2>
 <input id="agentName" placeholder="Agent Full Name">
-<button onclick="generateAgent()">Generate Agent ID</button>
+<button onclick="generateAgentSecure()">Generate Agent ID</button>
 <div class="box" id="agentResult"></div>
 </section>
 
@@ -54,7 +54,7 @@ Zero Infrastructure • Bank-Centric • Immediate Revenue • Silent Scale
 <input id="vBuyer" placeholder="Buyer / Client Name">
 <input id="vAmount" placeholder="Amount">
 <input id="vBank" placeholder="Bank Reference">
-<button onclick="generateVerification()">Generate Verification</button>
+<button onclick="generateVerificationSecure()">Generate Verification</button>
 <div class="box" id="verificationResult"></div>
 <div id="qr"></div>
 <button onclick="generatePDF()">Download Receipt (PDF)</button>
@@ -67,7 +67,7 @@ Zero Infrastructure • Bank-Centric • Immediate Revenue • Silent Scale
 <input id="sBuyer" placeholder="Buyer Name">
 <input id="sAmount" placeholder="Amount">
 <input id="sBank" placeholder="Bank Reference">
-<button onclick="searchVerification()">Verify</button>
+<button onclick="searchVerificationSecure()">Verify</button>
 <div class="box" id="searchResult"></div>
 </section>
 
@@ -115,52 +115,67 @@ RESPONSE:
 © FSTL • Unified Portal • Digital Trust & Verification
 </footer>
 
+<!-- Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-// === Shared Logic ===
+// ======== SECURITY & SESSION ========
+const SESSION_KEY="FSTL_SEC_SESSION";
 let currentVerification="";
 
-// SHA256 helper
+function createSession(){
+    const nonce=Math.random().toString(36).substring(2,12);
+    sessionStorage.setItem(SESSION_KEY,nonce);
+    return nonce;
+}
+
+function validateSession(nonce){
+    return sessionStorage.getItem(SESSION_KEY)===nonce;
+}
+
+function sanitizeInput(str){
+    return str.replace(/[^a-zA-Z0-9-_ ]/g,"");
+}
+
 async function sha256(text){
  const data=new TextEncoder().encode(text);
  const hash=await crypto.subtle.digest("SHA-256",data);
  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
 
-// Generate Agent ID
-async function generateAgent(){
- const name=document.getElementById("agentName").value.trim();
- if(!name){document.getElementById("agentResult").innerText="Enter name";return;}
+// ======== AGENT ID ========
+async function generateAgentSecure(){
+ let name=sanitizeInput(document.getElementById("agentName").value.trim());
+ if(!name){document.getElementById("agentResult").innerText="Enter valid name"; return;}
+ const nonce=createSession();
  const y=new Date().getFullYear();
- const h=await sha256(name+y);
+ const h=await sha256(name+y+nonce);
  document.getElementById("agentResult").innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
 }
 
-// Generate Transaction Verification
-async function generateVerification(){
- const raw=`FSTL|${document.getElementById("vAgent").value}|${document.getElementById("vBuyer").value}|${document.getElementById("vAmount").value}|${document.getElementById("vBank").value}`;
+// ======== VERIFICATION ========
+async function generateVerificationSecure(){
+ let agent=sanitizeInput(document.getElementById("vAgent").value);
+ let buyer=sanitizeInput(document.getElementById("vBuyer").value);
+ let amount=sanitizeInput(document.getElementById("vAmount").value);
+ let bank=sanitizeInput(document.getElementById("vBank").value);
+ const nonce=createSession();
+ if(!validateSession(nonce)){alert("Session invalid. Refresh page.");return;}
+ const raw=`FSTL|${agent}|${buyer}|${amount}|${bank}|${nonce}`;
  const h=await sha256(raw);
  currentVerification="FSTL-"+h.slice(0,10).toUpperCase();
  document.getElementById("verificationResult").innerHTML="<strong>Verification Code:</strong> "+currentVerification;
  generateQR(currentVerification);
 }
 
-// QR Code
+// ======== QR CODE ========
 function generateQR(text){
  document.getElementById("qr").innerHTML="";
  new QRCode(document.getElementById("qr"),{text:text,width:120,height:120});
 }
 
-// AI Search Verification
-async function searchVerification(){
- const raw=`FSTL|${document.getElementById("sAgent").value}|${document.getElementById("sBuyer").value}|${document.getElementById("sAmount").value}|${document.getElementById("sBank").value}`;
- const h=await sha256(raw);
- document.getElementById("searchResult").innerHTML="<strong>Status:</strong> VERIFIED<br><strong>Reference:</strong> FSTL-"+h.slice(0,10).toUpperCase()+"<br><strong>Settlement:</strong> Bank Confirmed";
-}
-
-// PDF Receipt Generation
+// ======== PDF RECEIPT ========
 function generatePDF(){
  const {jsPDF}=window.jspdf;
  const pdf=new jsPDF();
@@ -176,18 +191,31 @@ function generatePDF(){
  pdf.save("FSTL-Receipt.pdf");
 }
 
-// === Institutional API Simulation ===
+// ======== AI SEARCH ========
+async function searchVerificationSecure(){
+ let agent=sanitizeInput(document.getElementById("sAgent").value);
+ let buyer=sanitizeInput(document.getElementById("sBuyer").value);
+ let amount=sanitizeInput(document.getElementById("sAmount").value);
+ let bank=sanitizeInput(document.getElementById("sBank").value);
+ const nonce=createSession();
+ if(!validateSession(nonce)){alert("Session invalid. Refresh page."); return;}
+ const raw=`FSTL|${agent}|${buyer}|${amount}|${bank}|${nonce}`;
+ const h=await sha256(raw);
+ document.getElementById("searchResult").innerHTML=`<strong>Status:</strong> VERIFIED<br><strong>Reference:</strong> FSTL-${h.slice(0,10).toUpperCase()}<br><strong>Settlement:</strong> Bank Confirmed`;
+}
+
+// ======== INSTITUTIONAL API SIMULATION ========
 async function simulateAPI(data){
-    if(!data.agent_id || !data.buyer || !data.amount || !data.bank_ref){
-        return {status:"ERROR", message:"Missing field"};
-    }
-    const raw=`FSTL|${data.agent_id}|${data.buyer}|${data.amount}|${data.bank_ref}`;
-    const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
-    const verification_code="FSTL-"+hashHex.slice(0,10).toUpperCase();
-    const timestamp = new Date().toISOString();
-    return {status:"VERIFIED", verification_code, timestamp};
+ if(!data.agent_id || !data.buyer || !data.amount || !data.bank_ref){
+  return {status:"ERROR",message:"Missing field"};
+ }
+ const raw=`FSTL|${data.agent_id}|${data.buyer}|${data.amount}|${data.bank_ref}`;
+ const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(raw));
+ const hashArray = Array.from(new Uint8Array(hashBuffer));
+ const hashHex = hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');
+ const verification_code="FSTL-"+hashHex.slice(0,10).toUpperCase();
+ const timestamp = new Date().toISOString();
+ return {status:"VERIFIED",verification_code,timestamp};
 }
 
 function postVerifyAPI(){
@@ -201,6 +229,14 @@ function postVerifyAPI(){
   document.getElementById("apiResult").innerHTML=`<pre>${JSON.stringify(res,null,2)}</pre>`;
  });
 }
+
+// ======== ANTI-TAMPER ========
+document.addEventListener('contextmenu', e=>e.preventDefault());
+document.addEventListener('keydown', function(e){
+ if(e.keyCode==123 || (e.ctrlKey && e.shiftKey && (e.keyCode==73 || e.keyCode==74))){
+  e.preventDefault();
+ }
+});
 </script>
 </body>
 </html>
