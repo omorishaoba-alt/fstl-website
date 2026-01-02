@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FSTL – Verification Infrastructure</title>
+<title>FSTL – Digital Verification Infrastructure</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="First Standard Title Limited – Digital Verification, Receipts, Agents, Trust Infrastructure">
-<meta name="keywords" content="FSTL, Digital Verification, Agent Commission, Bank-Verified Receipts">
+<meta name="description" content="FSTL – Trusted verification, agent commissions, and receipts.">
+<meta name="keywords" content="FSTL, Verification, Agents, Receipts, Trust, Digital">
 <meta name="robots" content="index, follow">
 
 <style>
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#111}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#111}
 nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10}
 nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px}
 section{background:#fff;margin:10px;padding:20px;border-radius:6px}
@@ -23,7 +23,6 @@ table,th,td{border:1px solid #ccc;padding:5px;text-align:left}
 .small{font-size:13px;color:#444}
 </style>
 
-<!-- White-label dynamic -->
 <script>
 const BRAND = new URLSearchParams(window.location.search).get("brand") || "FSTL";
 document.title = BRAND + " – Verification System";
@@ -80,7 +79,7 @@ Zero Infrastructure • Bank-Centric • Silent Scale
 <input id="sBank" placeholder="Bank Reference">
 <button onclick="searchVerification()">Verify</button>
 <div class="box" id="searchResult"></div>
-<p class="small">Deterministic AI-backed reconstruction</p>
+<p class="small">Deterministic AI-backed confirmation</p>
 </section>
 
 <section id="payment">
@@ -135,12 +134,11 @@ All actions are auditable, verifiable, and compliant.
 Digital Trust • Verification • Infrastructure
 </footer>
 
-<!-- Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-// White-label brand display
+// White-label display
 document.getElementById("brandTitle").innerText = BRAND;
 
 // SHA-256 hashing
@@ -153,10 +151,9 @@ async function sha256(text){
 // Initialize agent database
 if(!localStorage.getItem("fstlAgents")) localStorage.setItem("fstlAgents",JSON.stringify({}));
 
-// Commission rate
 const COMMISSION_RATE = 0.05;
 
-// Agent ID generation
+// Generate Agent ID
 async function generateAgent(){
  const name=agentName.value.trim();
  if(!name){agentResult.innerText="Enter agent name";return;}
