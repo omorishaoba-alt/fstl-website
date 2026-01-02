@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <title>FSTL – Verification Infrastructure</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="description" content="First Standard Title Limited – Digital Verification, Receipts, Agents, Trust Infrastructure">
+<meta name="keywords" content="FSTL, Digital Verification, Agent Commission, Bank-Verified Receipts">
+<meta name="robots" content="index, follow">
 
 <style>
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#111}
-nav{background:#000;color:#fff;padding:12px;position:sticky;top:0}
+nav{background:#000;color:#fff;padding:12px;position:sticky;top:0;z-index:10}
 nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px}
 section{background:#fff;margin:10px;padding:20px;border-radius:6px}
 h1,h2{margin-top:0}
@@ -20,7 +21,7 @@ footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px}
 .small{font-size:13px;color:#444}
 </style>
 
-<!-- White-label -->
+<!-- White-label dynamic -->
 <script>
 const BRAND = new URLSearchParams(window.location.search).get("brand") || "FSTL";
 document.title = BRAND + " – Verification System";
@@ -36,6 +37,8 @@ document.title = BRAND + " – Verification System";
 <a href="#search">Search</a>
 <a href="#payment">Payment</a>
 <a href="#api">API</a>
+<a href="#legal">Legal</a>
+<a href="#admin">Admin</a>
 </nav>
 
 <section id="home">
@@ -109,6 +112,22 @@ RESPONSE:
 <p class="small">Institutional access only</p>
 </section>
 
+<section id="legal">
+<h2>Governance & Legal Notice</h2>
+<div class="box">
+FSTL only issues verification codes and receipts.<br>
+All payments go directly to FSTL bank accounts.<br>
+No custody of funds is held.<br>
+All actions are auditable, verifiable, and compliant.
+</div>
+</section>
+
+<section id="admin">
+<h2>Admin Dashboard</h2>
+<button onclick="enterAdminMode()">Enter Admin Mode</button>
+<div class="box" id="adminPanel" style="display:none"></div>
+</section>
+
 <footer>
 © First Standard Title Limited (FSTL)<br>
 Digital Trust • Verification • Infrastructure
@@ -119,14 +138,17 @@ Digital Trust • Verification • Infrastructure
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
+// Display white-label brand
 document.getElementById("brandTitle").innerText = BRAND;
 
+// SHA-256 hashing function
 async function sha256(text){
  const data=new TextEncoder().encode(text);
  const hash=await crypto.subtle.digest("SHA-256",data);
  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
 
+// Agent ID generation
 async function generateAgent(){
  const name=agentName.value.trim();
  if(!name){agentResult.innerText="Enter agent name";return;}
@@ -135,8 +157,8 @@ async function generateAgent(){
  agentResult.innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
 }
 
+// Verification code logic
 let currentVerification="";
-
 async function generateVerification(){
  const raw=`FSTL|${vAgent.value}|${vBuyer.value}|${vAmount.value}|${vBank.value}`;
  const h=await sha256(raw);
@@ -145,6 +167,7 @@ async function generateVerification(){
  generateQR();
 }
 
+// QR Code
 function generateQR(){
  document.getElementById("qr").innerHTML="";
  new QRCode(document.getElementById("qr"),{
@@ -154,6 +177,7 @@ function generateQR(){
  });
 }
 
+// AI Search
 async function searchVerification(){
  const raw=`FSTL|${sAgent.value}|${sBuyer.value}|${sAmount.value}|${sBank.value}`;
  const h=await sha256(raw);
@@ -163,6 +187,7 @@ async function searchVerification(){
  "<strong>Settlement:</strong> Bank Confirmed";
 }
 
+// PDF Receipts
 function generatePDF(){
  const {jsPDF}=window.jspdf;
  const pdf=new jsPDF();
@@ -183,7 +208,35 @@ function generatePDF(){
 
  pdf.save("FSTL-Receipt.pdf");
 }
-</script>
 
+// Automation / Commissions
+function calculateCommission(amount){
+ const rate=0.05;
+ return (parseFloat(amount)||0)*rate;
+}
+function generateAgentReport(agentID,totalTransactions,totalEarnings){
+ const {jsPDF}=window.jspdf;
+ const pdf=new jsPDF();
+ pdf.setFontSize(14);
+ pdf.text("FSTL Agent Report",20,20);
+ pdf.setFontSize(10);
+ pdf.text(`Agent ID: ${agentID}`,20,35);
+ pdf.text(`Total Transactions: ${totalTransactions}`,20,45);
+ pdf.text(`Total Earnings: ₦${totalEarnings.toFixed(2)}`,20,55);
+ pdf.save(`FSTL-AgentReport-${agentID}.pdf`);
+}
+
+// Admin Mode
+const ADMIN_PASSWORD="fstladmin123";
+function enterAdminMode(){
+ const pass=prompt("Enter Admin Password:");
+ if(pass===ADMIN_PASSWORD){
+   adminPanel.style.display="block";
+   adminPanel.innerHTML="<strong>Admin Dashboard Activated</strong><br>"+
+                        "Total Transactions: 0<br>Total Earnings: 0<br>(Demo)";
+ } else alert("Access Denied");
+}
+
+</script>
 </body>
 </html>
