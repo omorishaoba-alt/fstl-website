@@ -1,89 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>FSTL AI Paid Verification</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#111; }
-    nav { background:#000; padding:15px; position:sticky; top:0; }
-    nav a { color:#fff; margin-right:15px; text-decoration:none; font-weight:bold; }
-    section { padding:40px 20px; background:#fff; margin-bottom:10px; }
-    input, button { width:100%; padding:12px; margin-top:10px; font-size:16px; }
-    button { background:#000; color:#fff; border:none; cursor:pointer; }
-    #result { margin-top:20px; padding:20px; background:#eee; }
-    footer { background:#000; color:#fff; text-align:center; padding:20px; font-size:14px; }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html">Home</a>
-  <a href="search.html">AI Search</a>
-  <a href="verify.html">Verify</a>
-  <a href="agents.html">Agents</a>
-  <a href="payment.html">Payments</a>
-</nav>
-
-<section>
-  <h2>FSTL AI Paid Verification</h2>
-  <p>Enter your FSTL Reference ID to instantly verify and receive a bank-backed digital receipt.</p>
-
-  <input type="text" id="refID" placeholder="FSTL-REF-XXXX">
-  <button onclick="startVerification()">Submit & Pay</button>
-
-  <div id="result"></div>
-</section>
+<!-- Add this in your <head> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
 async function startVerification() {
   const ref = document.getElementById('refID').value.trim();
+  const agent = document.getElementById('agentID').value.trim();
+  const buyer = document.getElementById('buyerName').value.trim();
+  const payRef = document.getElementById('paymentRef').value.trim();
   const resultDiv = document.getElementById('result');
 
-  if(!ref) {
-    alert('Enter a Reference ID');
+  if(!ref || !agent || !buyer || !payRef) {
+    alert('Please fill all fields');
     return;
   }
 
-  // Step 1: Show "AI processing" message
-  resultDiv.innerHTML = '🔒 Processing AI verification...';
+  resultDiv.innerHTML = '🔒 FSTL AI is verifying transaction...';
 
-  // Step 2: Simulate AI + bank verification delay
-  await new Promise(r => setTimeout(r, 2000));
+  await new Promise(r => setTimeout(r, 2000)); // AI + bank placeholder
 
-  // Step 3: Simulate bank payment confirmation placeholder
-  resultDiv.innerHTML = `
-    ✅ Reference <strong>${ref}</strong> verified by FSTL AI.<br>
-    💰 Payment confirmed to FSTL bank account.<br>
-    <button onclick="downloadReceipt()">Download Receipt (PDF)</button>
-  `;
+  const verificationSuccess = true; // Replace with real API check
+
+  if(verificationSuccess){
+    resultDiv.innerHTML = `
+      ✅ Transaction Verified!<br>
+      <strong>Reference ID:</strong> ${ref}<br>
+      <strong>Agent ID:</strong> ${agent}<br>
+      <strong>Buyer Name:</strong> ${buyer}<br>
+      <strong>Payment Ref:</strong> ${payRef}<br>
+      💰 Payment confirmed to FSTL bank account<br>
+      <button onclick="downloadPDF('${ref}','${agent}','${buyer}','${payRef}')">Download Styled PDF Receipt</button>
+    `;
+  } else {
+    resultDiv.innerHTML = `❌ Verification Failed.`;
+  }
 }
 
-// Step 4: Generate receipt (PDF placeholder)
-function downloadReceipt() {
-  const ref = document.getElementById('refID').value.trim();
-  const receiptContent = `
-  FSTL Digital Verification Receipt
-  -------------------------------
-  Reference ID: ${ref}
-  Verified by: FSTL AI Layer
-  Bank Confirmed: Yes
-  Date: ${new Date().toLocaleString()}
-  -------------------------------
-  Thank you for using FSTL.
-  `;
+function downloadPDF(ref, agent, buyer, payRef) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-  const blob = new Blob([receiptContent], { type: 'text/plain' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `${ref}-FSTL-Receipt.txt`;
-  link.click();
+  // FSTL Branding
+  doc.setFontSize(22);
+  doc.setTextColor(0,0,128);
+  doc.text("First Standard Title Limited (FSTL)", 20, 30);
+
+  doc.setFontSize(16);
+  doc.setTextColor(0,0,0);
+  doc.text("Digital Verification Receipt", 20, 45);
+
+  doc.setFontSize(12);
+  doc.text(`Reference ID: ${ref}`, 20, 60);
+  doc.text(`Agent ID: ${agent}`, 20, 68);
+  doc.text(`Buyer Name: ${buyer}`, 20, 76);
+  doc.text(`Payment Reference: ${payRef}`, 20, 84);
+  doc.text(`Verified by: FSTL AI Layer`, 20, 92);
+  doc.text(`Bank Confirmed: Yes`, 20, 100);
+  doc.text(`Date: ${new Date().toLocaleString()}`, 20, 108);
+
+  doc.setDrawColor(0,0,0);
+  doc.line(20, 112, 190, 112);
+
+  doc.setFontSize(10);
+  doc.text("Thank you for using FSTL. This receipt is bank-backed and AI-verified.", 20, 120);
+
+  doc.save(`${ref}-FSTL-Receipt.pdf`);
 }
 </script>
-
-<footer>
-  © First Standard Title Limited (FSTL)
-</footer>
-
-</body>
-</html>
