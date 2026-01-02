@@ -1,169 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>FSTL AI Verification Search</title>
+<title>FSTL Verification Search</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
 <style>
-body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#111; }
-nav { background:#000; padding:15px; }
-nav a { color:#fff; margin-right:15px; text-decoration:none; font-weight:bold; }
-section { padding:30px 20px; background:#fff; margin:10px; }
-label { font-weight:bold; display:block; margin-top:12px; }
-input, button {
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  font-size:16px;
-}
-button {
-  background:#000;
-  color:#fff;
-  border:none;
-  cursor:pointer;
-}
-#result {
-  margin-top:20px;
-  padding:20px;
-  background:#eee;
-}
-footer {
-  background:#000;
-  color:#fff;
-  text-align:center;
-  padding:15px;
-  font-size:14px;
-}
+body{font-family:Arial;background:#f5f5f5;padding:20px}
+.box{background:#fff;padding:20px;max-width:500px;margin:auto}
+input,button{width:100%;padding:10px;margin-top:10px}
+button{background:#000;color:#fff;border:none}
+.result{margin-top:15px;font-weight:bold}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="search.html">AI Search</a>
-</nav>
+<div class="box">
+<h2>FSTL Verification</h2>
 
-<section>
-<h2>FSTL AI Verification Search</h2>
-<p>
-Enter the transaction details below.  
-The system will <strong>recompute the FSTL Verification Code</strong>.  
-If the code matches → VERIFIED.
-</p>
+<input id="agent" placeholder="Agent ID">
+<input id="buyer" placeholder="Buyer Name">
+<input id="amount" placeholder="Amount">
+<input id="date" placeholder="YYYY-MM-DD">
+<input id="bankref" placeholder="Bank Reference">
 
-<label>Agent ID</label>
-<input id="agent" placeholder="AG03">
+<button onclick="verify()">Verify</button>
 
-<label>Buyer Full Name</label>
-<input id="buyer" placeholder="John Doe">
-
-<label>Service Type</label>
-<input id="service" placeholder="TITLEVERIFY">
-
-<label>Bank Reference (last digits / narration)</label>
-<input id="bankref" placeholder="4839">
-
-<label>Verification Code Provided</label>
-<input id="providedCode" placeholder="FSTL-YYYYMMDD-AG-BY-XXXX">
-
-<button onclick="verifyTransaction()">Verify Transaction</button>
-
-<div id="result"></div>
-</section>
+<div class="result" id="result"></div>
+</div>
 
 <script>
-async function sha256(text) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(text);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-async function generateFSTLCode(agent, buyer, service, bankref) {
-  const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
-  const buyerCode = buyer.replace(/\s+/g,'').substring(0,2).toUpperCase();
-  const base = `${agent}|${buyer.toUpperCase()}|${service}|${date}|${bankref}`;
-  const hash = await sha256(base);
-  const shortHash = hash.substring(0,4).toUpperCase();
-  return `FSTL-${date}-${agent}-${buyerCode}-${shortHash}`;
-}
+async function verify(){
+  const agent = agent.value;
+  const buyer = buyer.value;
+  const amount = amount.value;
+  const date = date.value;
+  const bankref = bankref.value;
 
-async function verifyTransaction() {
-  const agent = document.getElementById('agent').value.trim();
-  const buyer = document.getElementById('buyer').value.trim();
-  const service = document.getElementById('service').value.trim();
-  const bankref = document.getElementById('bankref').value.trim();
-  const provided = document.getElementById('providedCode').value.trim();
-  const result = document.getElementById('result');
+  const raw = `FSTL|${agent}|${buyer}|${amount}|${date}|${bankref}`;
+  const hash = await sha256(raw);
+  const code = `FSTL-${date.slice(2,4)}-${agent}-${hash.slice(0,8).toUpperCase()}`;
 
-  if(!agent || !buyer || !service || !bankref || !provided) {
-    alert("All fields are required");
-    return;
-  }
-
-  const computed = await generateFSTLCode(agent, buyer, service, bankref);
-
-  if(computed === provided) {
-    result.innerHTML = `
-      ✅ <strong>VERIFIED</strong><br><br>
-      <strong>FSTL Code:</strong> ${computed}<br>
-      <strong>Agent:</strong> ${agent}<br>
-      <strong>Buyer:</strong> ${buyer}<br>
-      <strong>Service:</strong> ${service}<br>
-      <strong>Bank Ref:</strong> ${bankref}<br><br>
-      <button onclick="downloadPDF('${computed}','${agent}','${buyer}','${service}','${bankref}')">
-        Download PDF Receipt
-      </button>
-    `;
-  } else {
-    result.innerHTML = `
-      ❌ <strong>INVALID</strong><br><br>
-      Provided code does not match computed verification.
-    `;
-  }
-}
-
-function downloadPDF(code, agent, buyer, service, bankref) {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  doc.setFontSize(20);
-  doc.text("First Standard Title Limited (FSTL)", 20, 25);
-
-  doc.setFontSize(14);
-  doc.text("Digital Verification Receipt", 20, 40);
-
-  doc.setFontSize(11);
-  doc.text(`Verification Code: ${code}`, 20, 55);
-  doc.text(`Agent ID: ${agent}`, 20, 65);
-  doc.text(`Buyer Name: ${buyer}`, 20, 75);
-  doc.text(`Service: ${service}`, 20, 85);
-  doc.text(`Bank Reference: ${bankref}`, 20, 95);
-  doc.text(`Date: ${new Date().toLocaleString()}`, 20, 105);
-
-  doc.line(20,110,190,110);
-
-  doc.setFontSize(10);
-  doc.text(
-    "This receipt is generated by FSTL verification logic. "+
-    "Verification is mathematically derived and bank-referenced.",
-    20, 120
-  );
-
-  doc.save(`${code}-FSTL-Receipt.pdf`);
+  document.getElementById("result").innerHTML =
+    "VERIFICATION CODE:<br>" + code;
 }
 </script>
-
-<footer>
-© First Standard Title Limited (FSTL)<br>
-The Redeemer of Shadows • Custodian of Truth
-</footer>
 
 </body>
 </html>
