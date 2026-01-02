@@ -13,7 +13,7 @@ section{background:#fff;margin:10px;padding:20px;border-radius:6px;}
 h1,h2{margin-top:0;}
 input,button{width:100%;padding:10px;margin:6px 0;}
 button{background:#000;color:#fff;border:none;cursor:pointer;}
-.box{background:#eee;padding:15px;border-radius:4px;}
+.box{background:#eee;padding:15px;border-radius:4px;margin-top:10px;}
 footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px;}
 </style>
 </head>
@@ -111,7 +111,7 @@ async function generateVerification(){
 // QR Code
 function generateQR(){
  document.getElementById("qr").innerHTML="";
-new QRCode(document.getElementById("qr"),{text:location.origin+"/#search",width:120,height:120});
+ new QRCode(document.getElementById("qr"),{text:location.origin+"/#search",width:120,height:120});
 }
 
 // AI Search
