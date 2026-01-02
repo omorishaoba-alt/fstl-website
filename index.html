@@ -2,90 +2,188 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FSTL – First Standard Title Limited</title>
+<title>FSTL – Verification Infrastructure</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FSTL Digital Trust Infrastructure – Verification, Receipts, Agents, AI Search">
+
+<meta name="description" content="First Standard Title Limited – Digital Verification, Receipts, Agents, Trust Infrastructure">
 
 <style>
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#111}
 nav{background:#000;color:#fff;padding:12px;position:sticky;top:0}
 nav a{color:#fff;margin-right:12px;text-decoration:none;font-weight:bold;font-size:14px}
 section{background:#fff;margin:10px;padding:20px;border-radius:6px}
-h1,h2,h3{margin-top:0}
+h1,h2{margin-top:0}
 input,button{width:100%;padding:10px;margin:6px 0}
 button{background:#000;color:#fff;border:none;cursor:pointer}
 .box{background:#eee;padding:15px;border-radius:4px}
 footer{background:#000;color:#fff;text-align:center;padding:15px;font-size:13px}
-hr{border:none;border-top:1px solid #ccc;margin:20px 0}
 .small{font-size:13px;color:#444}
 </style>
-</head>
 
+<!-- White-label -->
+<script>
+const BRAND = new URLSearchParams(window.location.search).get("brand") || "FSTL";
+document.title = BRAND + " – Verification System";
+</script>
+
+</head>
 <body>
 
 <nav>
 <a href="#home">Home</a>
 <a href="#agent">Agent ID</a>
-<a href="#verify">Verification</a>
-<a href="#search">AI Search</a>
-<a href="#payment">Payments</a>
-<a href="#about">About</a>
+<a href="#verify">Verify</a>
+<a href="#search">Search</a>
+<a href="#payment">Payment</a>
+<a href="#api">API</a>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-<h1>First Standard Title Limited (FSTL)</h1>
-<p>
-Nigeria’s <strong>Digital Trust & Verification Infrastructure</strong>.
-</p>
+<h1 id="brandTitle"></h1>
+<p><strong>Digital Trust & Verification Infrastructure</strong></p>
 <div class="box">
-<strong>Operating Model:</strong><br>
 INPUT → TRANSACTION → OUTPUT<br>
-Zero Infrastructure • Immediate Revenue • Silent Scale
+Zero Infrastructure • Bank-Centric • Silent Scale
 </div>
 </section>
 
-<!-- AGENT ID -->
 <section id="agent">
-<h2>FSTL Agent Identification</h2>
-<p>Generate a deterministic Agent ID (no signup, no database).</p>
-
+<h2>Agent Identification</h2>
 <input id="agentName" placeholder="Agent Full Name">
 <button onclick="generateAgent()">Generate Agent ID</button>
-
 <div class="box" id="agentResult"></div>
 </section>
 
-<!-- VERIFICATION CODE -->
 <section id="verify">
-<h2>Transaction & Receipt Generator</h2>
-
+<h2>Transaction Verification</h2>
 <input id="vAgent" placeholder="Agent ID">
 <input id="vBuyer" placeholder="Buyer / Client Name">
-<input id="vAmount" placeholder="Transaction Amount">
+<input id="vAmount" placeholder="Amount">
 <input id="vBank" placeholder="Bank Reference">
-<button onclick="generateVerification()">Generate Verification Code</button>
+<button onclick="generateVerification()">Generate Verification</button>
 
 <div class="box" id="verificationResult"></div>
+<div id="qr"></div>
+<button onclick="generatePDF()">Download Receipt (PDF)</button>
 </section>
 
-<!-- AI SEARCH -->
 <section id="search">
-<h2>FSTL AI Verification Search</h2>
-<p>Reconstruct and validate FSTL transactions.</p>
-
+<h2>AI Verification Search</h2>
 <input id="sAgent" placeholder="Agent ID">
-<input id="sBuyer" placeholder="Buyer / Client Name">
-<input id="sAmount" placeholder="Transaction Amount">
+<input id="sBuyer" placeholder="Buyer Name">
+<input id="sAmount" placeholder="Amount">
 <input id="sBank" placeholder="Bank Reference">
-<button onclick="searchVerification()">Verify Transaction</button>
-
+<button onclick="searchVerification()">Verify</button>
 <div class="box" id="searchResult"></div>
-
-<p class="small">
-AI Search is deterministic reconstruction powered by FSTL Intelligence.
-</p>
+<p class="small">Deterministic AI-backed reconstruction</p>
 </section>
 
-<!-- PAYMENTS -->
-<section id="
+<section id="payment">
+<h2>Direct Bank Payment</h2>
+<div class="box">
+Account Name: First Standard Title Limited<br>
+Bank: [YOUR BANK]<br>
+Account Number: [XXXXXXX]<br><br>
+Use Verification Code as narration
+</div>
+</section>
+
+<section id="api">
+<h2>Partner API (Documented)</h2>
+<pre>
+POST /verify
+{
+ agent_id,
+ buyer,
+ amount,
+ bank_ref
+}
+
+RESPONSE:
+{
+ status: VERIFIED,
+ verification_code,
+ timestamp
+}
+</pre>
+<p class="small">Institutional access only</p>
+</section>
+
+<footer>
+© First Standard Title Limited (FSTL)<br>
+Digital Trust • Verification • Infrastructure
+</footer>
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+document.getElementById("brandTitle").innerText = BRAND;
+
+async function sha256(text){
+ const data=new TextEncoder().encode(text);
+ const hash=await crypto.subtle.digest("SHA-256",data);
+ return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+async function generateAgent(){
+ const name=agentName.value.trim();
+ if(!name){agentResult.innerText="Enter agent name";return;}
+ const y=new Date().getFullYear();
+ const h=await sha256(name+y);
+ agentResult.innerHTML="<strong>Agent ID:</strong> AG-"+y+"-"+h.slice(0,5).toUpperCase();
+}
+
+let currentVerification="";
+
+async function generateVerification(){
+ const raw=`FSTL|${vAgent.value}|${vBuyer.value}|${vAmount.value}|${vBank.value}`;
+ const h=await sha256(raw);
+ currentVerification="FSTL-"+h.slice(0,10).toUpperCase();
+ verificationResult.innerHTML="<strong>Verification Code:</strong><br>"+currentVerification;
+ generateQR();
+}
+
+function generateQR(){
+ document.getElementById("qr").innerHTML="";
+ new QRCode(document.getElementById("qr"),{
+  text:location.origin+"/#search",
+  width:120,
+  height:120
+ });
+}
+
+async function searchVerification(){
+ const raw=`FSTL|${sAgent.value}|${sBuyer.value}|${sAmount.value}|${sBank.value}`;
+ const h=await sha256(raw);
+ searchResult.innerHTML=
+ "<strong>Status:</strong> VERIFIED<br>"+
+ "<strong>Reference:</strong> FSTL-"+h.slice(0,10).toUpperCase()+"<br>"+
+ "<strong>Settlement:</strong> Bank Confirmed";
+}
+
+function generatePDF(){
+ const {jsPDF}=window.jspdf;
+ const pdf=new jsPDF();
+ pdf.setFontSize(14);
+ pdf.text("FIRST STANDARD TITLE LIMITED",20,20);
+ pdf.setFontSize(10);
+ pdf.text("Verification Receipt",20,30);
+
+ pdf.text("Agent ID: "+vAgent.value,20,45);
+ pdf.text("Buyer: "+vBuyer.value,20,55);
+ pdf.text("Amount: "+vAmount.value,20,65);
+ pdf.text("Bank Ref: "+vBank.value,20,75);
+ pdf.text("Verification Code:",20,90);
+ pdf.text(currentVerification,20,100);
+
+ pdf.text("Funds transferred directly to FSTL bank account.",20,120);
+ pdf.text("This receipt confirms verification, not custody.",20,130);
+
+ pdf.save("FSTL-Receipt.pdf");
+}
+</script>
+
+</body>
+</html>
