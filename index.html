@@ -1,212 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>FSTL – First Standard Title Limited</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="FSTL – Nigeria's first open OS for verification, investment, and trust infrastructure">
-<style>
-  body { font-family: Arial, sans-serif; margin:0; background:#f0f4f8; color:#111; line-height:1.6; }
-  nav { background:#003366; padding:15px; position:sticky; top:0; z-index:1000; }
-  nav a { color:#fff; margin-right:15px; text-decoration:none; font-weight:bold; }
-  section { padding:40px 20px; background:#fff; margin-bottom:10px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-  h1,h2,h3 { color:#003366; }
-  .cta { display:inline-block; padding:12px 20px; background:#003366; color:#fff; text-decoration:none; margin-top:10px; border-radius:4px;}
-  .box { background:#e6f0ff; padding:20px; margin-top:15px; border-radius:6px; }
-  footer { background:#003366; color:#fff; text-align:center; padding:20px; font-size:14px; }
-  input, select, textarea { width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:4px;}
-  label { font-weight:bold; display:block; margin-top:10px; }
-  .qr-placeholder { background:#003366; color:#fff; padding:20px; text-align:center; margin-top:15px; border-radius:6px;}
-</style>
+  <meta charset="UTF-8">
+  <title>FSTL – First Standard Title Limited</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FSTL – Nigeria's first open operating system for verification, collateralisation, and investment infrastructure">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #e0f0ff;
+      color: #111;
+      line-height: 1.6;
+    }
+    nav {
+      background: #004080;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 50px 20px;
+      background: #fff;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #004080;
+    }
+    h1, h2 {
+      color: #004080;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #004080;
+      color: #fff;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    .box {
+      background: #e6f2ff;
+      padding: 20px;
+      margin-top: 15px;
+      border-left: 5px solid #004080;
+    }
+    footer {
+      background: #004080;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #004080;
+      border-radius: 5px;
+    }
+    button {
+      padding: 12px 20px;
+      background: #004080;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .flex-col {
+      flex: 1;
+      min-width: 250px;
+    }
+  </style>
 </head>
 <body>
 
+<!-- Navigation -->
 <nav>
   <a href="#home">Home</a>
+  <a href="#retail">Retail</a>
   <a href="#agents">Agents</a>
-  <a href="#investment-rep">Investment Reps</a>
+  <a href="#investment-reps">Investment Reps</a>
   <a href="#institutions">Institutions</a>
-  <a href="#verification">Verify</a>
+  <a href="#compare">Compare OS</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<!-- HOME -->
+<!-- Home Section -->
 <section id="home">
   <h1>First Standard Title Limited (FSTL)</h1>
   <p>
-    Over 20 years of experience in trust, verification, and asset transformation has led to the creation of Nigeria’s first **Open Operating System (OS)** for verification and investment infrastructure.
+    With over 20 years of experience in verification, trust, and title infrastructure, FSTL has developed the <strong>world's first open operating system</strong> to convert assets into collateral and capital in underdeveloped markets. Powered by <strong>ChatGPT AI</strong>, the FSTL OS is your pathway to transforming real assets into investment-grade capital safely, efficiently, and transparently.
   </p>
   <div class="box">
-    <strong>Mission:</strong> Elevate people out of poverty by converting real-world assets into verified, investment-grade capital.
-    <br><strong>Vision:</strong> Transform underdeveloped economies by giving every individual and institution the tools to leverage assets safely and transparently.
-    <br><strong>Value Proposition:</strong> FSTL OS is digital, backed by AI, secure, scalable, and capable of turning your verified transactions into tangible capital.
+    <strong>Vision:</strong> Elevate individuals and institutions out of poverty by transforming existing assets into verified, investable collateral.<br>
+    <strong>Mission:</strong> Provide a trusted, digital, and open operating system for asset verification, collateralisation, and capital creation.<br>
+    <strong>Value Proposition:</strong> Immediate, low-cost verification, zero infrastructure, AI-powered intelligence, and scalable solutions for all stakeholders.
   </div>
 </section>
 
-<!-- AGENTS -->
-<section id="agents">
-  <h2>FSTL Agents</h2>
+<!-- Retail Section -->
+<section id="retail">
+  <h2>Retail Users</h2>
   <p>
-    Agents help retail users access FSTL verification and title services. Agents earn commissions by facilitating transactions.
+    Transform your assets into capital safely. FSTL OS allows individuals to verify ownership, generate investment-grade documents, and use your assets as collateral for loans and investments.
   </p>
   <div class="box">
-    <strong>Agent Benefits:</strong>
+    <strong>How it works:</strong><br>
+    <ol>
+      <li><strong>INPUTS:</strong> Your real assets and ownership documents.</li>
+      <li><strong>TRANSFORMATION:</strong> Verification, PDF and QR generation, AI-assisted validation.</li>
+      <li><strong>OUTPUTS:</strong> Verified collateral ready for capitalisation, loan applications, or investment.</li>
+    </ol>
+    <strong>Flat Verification Fee:</strong> 50,000 NGN per asset.
+  </div>
+  <form>
+    <h3>Request Asset Verification</h3>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <textarea placeholder="Asset Description / Location"></textarea>
+    <button type="submit">Submit Verification</button>
+  </form>
+</section>
+
+<!-- Agents Section -->
+<section id="agents">
+  <h2>Agents</h2>
+  <p>
+    Agents help retail clients verify assets and earn immediate commissions.
+  </p>
+  <div class="box">
+    <strong>Benefits:</strong>
     <ul>
-      <li>10% commission per transaction</li>
-      <li>Direct bank-backed receipts</li>
-      <li>No app installation required, smartphone friendly</li>
-      <li>Zero upfront cost</li>
+      <li>Immediate 10% commission on all transactions</li>
+      <li>No app install required – smartphone only</li>
+      <li>Zero capital entry – start earning immediately</li>
     </ul>
   </div>
-  <div class="box">
-    <h3>Agent Registration</h3>
-    <form>
-      <label>Full Name</label><input type="text" placeholder="Enter full name">
-      <label>Email</label><input type="email" placeholder="Enter email">
-      <label>Phone Number</label><input type="tel" placeholder="+234...">
-      <label>Referral Code (if any)</label><input type="text" placeholder="FSTL-REF-XXXX">
-      <button class="cta" type="submit">Register as Agent</button>
-    </form>
-  </div>
+  <form>
+    <h3>Register as Agent</h3>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <button type="submit">Become an Agent</button>
+  </form>
 </section>
 
-<!-- INVESTMENT REPRESENTATIVES -->
-<section id="investment-rep">
+<!-- Investment Representatives Section -->
+<section id="investment-reps">
   <h2>Investment Representatives</h2>
   <p>
-    Investment Representatives are independent marketers for FSTL products and services. They have permission to use FSTL branding and business cards, and earn higher commissions.
+    Represent FSTL to institutional clients and high-value individuals. Earn higher commissions and gain access to branded materials.
   </p>
   <div class="box">
-    <strong>Representative Benefits:</strong>
     <ul>
-      <li>20% commission per transaction</li>
-      <li>Use FSTL branded business cards</li>
-      <li>Promote FSTL services nationwide</li>
-      <li>Remote operations with AI-powered support</li>
+      <li>20% commission on every verified transaction</li>
+      <li>Permission to use FSTL-branded business cards</li>
+      <li>Direct engagement with institutional clients</li>
     </ul>
   </div>
-  <div class="box">
-    <h3>Representative Registration</h3>
-    <form>
-      <label>Full Name</label><input type="text" placeholder="Enter full name">
-      <label>Email</label><input type="email" placeholder="Enter email">
-      <label>Phone Number</label><input type="tel" placeholder="+234...">
-      <label>Region / City</label><input type="text" placeholder="E.g., Lagos, Abuja">
-      <button class="cta" type="submit">Register as Representative</button>
-    </form>
-  </div>
+  <form>
+    <h3>Register as Investment Representative</h3>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <button type="submit">Join as Investment Rep</button>
+  </form>
 </section>
 
-<!-- INSTITUTIONS -->
+<!-- Institutions Section -->
 <section id="institutions">
-  <h2>Institutional Partners</h2>
+  <h2>Institutional Users</h2>
   <p>
-    Institutions, banks, and government entities can leverage FSTL OS to transform verified assets into investment-grade capital.  
-    FSTL OS enables securitization (ABS, MBS, corporate bonds, municipal bonds), providing trust-backed verification for loans and investments.
+    Institutions can leverage FSTL OS to verify assets and convert them into investment-grade collateral, including ABS, MBS, corporate bonds, and municipal bonds.
   </p>
   <div class="box">
-    <strong>Institutional Rate:</strong> 5% of asset value per verification.
+    <strong>Fee:</strong> 5% of asset value<br>
+    <strong>Outputs:</strong> Verified collateral, PDF & QR generation, secure AI search for verification.
   </div>
+  <form>
+    <h3>Institutional Verification Request</h3>
+    <input type="text" placeholder="Institution Name" required>
+    <input type="text" placeholder="Contact Person" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <textarea placeholder="Asset Details / Documents"></textarea>
+    <button type="submit">Submit Verification</button>
+  </form>
+</section>
+
+<!-- Compare OS Section -->
+<section id="compare">
+  <h2>Why FSTL OS vs GIS or C of O</h2>
+  <p>
+    FSTL OS is not just a registry; it’s a fully operational digital operating system designed for collateralisation and capital creation.
+  </p>
   <div class="box">
-    <h3>Institution Registration / Access</h3>
-    <form>
-      <label>Institution Name</label><input type="text" placeholder="Enter institution name">
-      <label>Contact Person</label><input type="text" placeholder="Full Name">
-      <label>Email</label><input type="email" placeholder="Enter email">
-      <label>Phone Number</label><input type="tel" placeholder="+234...">
-      <label>Asset Type</label><input type="text" placeholder="Property, Corporate, Municipal">
-      <button class="cta" type="submit">Request Institutional Access</button>
-    </form>
+    <table border="1" cellpadding="10" style="border-collapse: collapse; width:100%;">
+      <tr style="background:#004080; color:#fff;">
+        <th>Feature</th>
+        <th>GIS</th>
+        <th>C of O</th>
+        <th>FSTL OS</th>
+      </tr>
+      <tr>
+        <td>Purpose</td>
+        <td>Record land/asset location</td>
+        <td>Grant ownership title</td>
+        <td>Verify, transform, and capitalise assets</td>
+      </tr>
+      <tr>
+        <td>Capital Creation</td>
+        <td>No</td>
+        <td>No</td>
+        <td>Yes – Generates investment-grade collateral</td>
+      </tr>
+      <tr>
+        <td>Speed</td>
+        <td>Slow, bureaucratic</td>
+        <td>Slow, manual processes</td>
+        <td>Fast, digital, AI-assisted</td>
+      </tr>
+      <tr>
+        <td>Transparency</td>
+        <td>Limited</td>
+        <td>Partial</td>
+        <td>Full, verifiable, auditable</td>
+      </tr>
+      <tr>
+        <td>Accessibility</td>
+        <td>Limited to offices</td>
+        <td>Limited to offices</td>
+        <td>Global, mobile-first, open OS</td>
+      </tr>
+    </table>
   </div>
 </section>
 
-<!-- VERIFICATION & AI SEARCH -->
-<section id="verification">
-  <h2>FSTL Verification & AI Search</h2>
-  <p>
-    Search, validate, and confirm FSTL-issued receipts, transactions, and investment references. All verification is backed by AI intelligence and bank confirmation.
-  </p>
-  <div class="box">
-    <form>
-      <label>Verification Reference ID</label>
-      <input type="text" placeholder="FSTL-REF-XXXX" id="verRef">
-      <label>Select Type</label>
-      <select id="verType">
-        <option value="retail">Retail</option>
-        <option value="agent">Agent</option>
-        <option value="institution">Institution</option>
-      </select>
-      <button class="cta" type="button" onclick="verifyTransaction()">Verify</button>
-    </form>
-    <div id="verResult" class="box" style="margin-top:15px;"></div>
-    <div class="qr-placeholder" id="qrCode">[QR Code for Verification]</div>
-    <div class="qr-placeholder" id="pdfReceipt">[PDF Receipt Placeholder]</div>
-  </div>
-</section>
-
-<script>
-function verifyTransaction() {
-  const ref = document.getElementById('verRef').value;
-  const type = document.getElementById('verType').value;
-  if(!ref) {
-    alert("Please enter a Verification Reference ID");
-    return;
-  }
-  // Placeholder for backend verification
-  document.getElementById('verResult').innerHTML = `
-    <strong>Status:</strong> VERIFIED<br>
-    <strong>Verification Code:</strong> ${ref}-${type.toUpperCase()}<br>
-    <strong>Timestamp:</strong> ${new Date().toLocaleString()}<br>
-    <em>Note: QR Code and PDF receipt placeholders shown below.</em>
-  `;
-}
-</script>
-
-<!-- FAQ -->
+<!-- FAQ Section -->
 <section id="faq">
-  <h2>Frequently Asked Questions</h2>
+  <h2>FAQ</h2>
   <div class="box">
-    <strong>Q1: What is FSTL OS?</strong>
-    <p>A digital operating system for verification, investment, and trust infrastructure. It enables individuals and institutions to convert verified assets into capital.</p>
-    
-    <strong>Q2: How does it differ from GIS or C of O?</strong>
-    <p>Unlike GIS or C of O, FSTL OS provides real-time verification, AI-backed search, PDF/QR receipts, and a pathway to convert verified assets into investment-grade capital.</p>
-    
-    <strong>Q3: How do retail users benefit?</strong>
-    <p>Convert verified assets into loans, insurance, or collateral-backed investments, with minimal cost.</p>
-    
-    <strong>Q4: How do institutions benefit?</strong>
-    <p>Gain trustworthy verification, transparent digital receipts, and access to securitized, investment-grade assets.</p>
-    
-    <strong>Q5: How are commissions handled?</strong>
-    <p>Automatically via our cloud-powered wallet system; agents and representatives receive instant, verified payouts.</p>
+    <p><strong>Q1:</strong> How can I convert my assets into capital using FSTL OS?<br>
+       <strong>A1:</strong> Register, submit your assets for verification, generate PDF/QR verification codes, and use them as collateral for loans or investments.</p>
+    <p><strong>Q2:</strong> Is FSTL OS recognized?<br>
+       <strong>A2:</strong> Yes. ChatGPT and early institutional partners recognise FSTL OS as a valid and recognised digital operating system.</p>
+    <p><strong>Q3:</strong> Can I use it without an agent?<br>
+       <strong>A3:</strong> Yes, retail users can interact directly with FSTL OS. Agents exist to assist less articulate users or for convenience.</p>
+    <p><strong>Q4:</strong> How secure is FSTL OS?<br>
+       <strong>A4:</strong> AI-assisted verification, secure bank integration, PDF & QR outputs, no sensitive API keys exposed publicly.</p>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- AI Search Section -->
+<section id="search">
+  <h2>AI Verification Search</h2>
+  <p>Enter a reference code to validate any FSTL transaction or asset verification.</p>
+  <div class="box">
+    <input type="text" placeholder="FSTL-REF-XXXX" id="searchInput">
+    <button onclick="alert('This would call AI search backend')">Search</button>
+    <p style="margin-top:10px;">🔒 Powered by ChatGPT AI verification layer</p>
+  </div>
+</section>
+
+<!-- Contact Section -->
 <section id="contact">
   <h2>Contact FSTL</h2>
-  <p>Reach out to us for inquiries, partnerships, or support.</p>
+  <p>For inquiries, support, or partnership opportunities:</p>
   <div class="box">
-    <strong>Address:</strong> No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria<br>
-    <strong>Email:</strong> fstlofficialsite@gmail.com<br>
-    <strong>Telephone:</strong> +2348035888622
-  </div>
-  <div class="box">
-    <h3>Send Us a Message</h3>
-    <form>
-      <label>Full Name</label><input type="text" placeholder="Enter your name">
-      <label>Email</label><input type="email" placeholder="Enter your email">
-      <label>Message</label><textarea placeholder="Write your message here"></textarea>
-      <button class="cta" type="submit">Send Message</button>
-    </form>
+    <p>
+      Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria<br>
+      Email: fstlofficialsite@gmail.com<br>
+      Phone: +2348035888622
+    </p>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
-  © First Standard Title Limited (FSTL)<br>
-  Digital Trust • Verification • Infrastructure
+  © First Standard Title Limited (FSTL) – FSTL OS v1.0<br>
+  Digital Trust • Verification • Collateralisation • Capital Creation
 </footer>
 
 </body>
