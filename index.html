@@ -1,174 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First Standard Title Limited - FSTL OS v1.0</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Roboto', sans-serif; margin:0; padding:0; line-height:1.6; background:#f0f4f8; color:#0b2d5f; }
-    a { color:#0b2d5f; text-decoration:none; }
-    header, footer { background:#0b2d5f; color:#fff; padding:20px 0; text-align:center; }
-    header h1 { margin:0; font-size:2rem; }
-    nav a { margin: 0 15px; font-weight:700; }
-    section { padding:40px 20px; max-width:1200px; margin:0 auto; }
-    h2 { color:#0b2d5f; margin-bottom:20px; }
-    .btn { display:inline-block; background:#0b2d5f; color:#fff; padding:10px 20px; margin:10px 0; border-radius:5px; font-weight:700; }
-    .container { display:flex; flex-wrap:wrap; gap:20px; }
-    .card { background:#fff; padding:20px; border-radius:10px; flex:1 1 300px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
-    form input, form select, form textarea { width:100%; padding:10px; margin:5px 0 15px; border-radius:5px; border:1px solid #ccc; }
-    form button { background:#0b2d5f; color:#fff; padding:10px; border:none; border-radius:5px; cursor:pointer; font-weight:700; }
-    footer p { margin:5px 0; font-size:0.9rem; }
-    .highlight { color:#ff7f50; font-weight:700; }
-    .infographic { background:#e1e7f2; padding:20px; text-align:center; border-radius:10px; margin:20px 0; }
-    /* Interactive Flow Styles */
-    .flow-container { display:flex; justify-content:space-around; flex-wrap:wrap; margin-top:30px; }
-    .flow-step { background:#fff; padding:20px; border-radius:10px; flex:1 1 200px; margin:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; cursor:pointer; }
-    .flow-step:hover { transform: scale(1.05); background:#cfe2ff; }
-    .flow-step h4 { margin-bottom:10px; color:#0b2d5f; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSTL OS v1.0 | First Standard Title Limited</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background:#f0f4f8;
+    color:#0b3d91;
+}
+header {
+    background:#0b3d91;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+}
+nav {
+    background:#0a357f;
+    display:flex;
+    justify-content:center;
+}
+nav a {
+    color:#fff;
+    padding:15px 20px;
+    text-decoration:none;
+}
+nav a:hover {
+    background:#08306b;
+}
+section {
+    padding:40px 20px;
+    max-width:1200px;
+    margin:auto;
+}
+h1,h2,h3 {
+    color:#0b3d91;
+}
+button {
+    background:#0b3d91;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    cursor:pointer;
+}
+button:hover {
+    background:#08306b;
+}
+footer {
+    background:#0a357f;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+.card {
+    background:white;
+    padding:20px;
+    margin:20px 0;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+.form-input {
+    margin:10px 0;
+}
+input, select, textarea {
+    padding:10px;
+    width:100%;
+    margin-top:5px;
+}
+</style>
 </head>
 <body>
 
 <header>
-  <h1>First Standard Title Limited - FSTL OS v1.0</h1>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About FSTL OS</a>
-    <a href="#how-it-works">How It Works</a>
-    <a href="#services">Services</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <h1>First Standard Title Limited (FSTL OS v1.0)</h1>
+    <p>The Redeemer of Shadows and Guardian of Truth – 20 Years of Expertise</p>
 </header>
 
+<nav>
+    <a href="#home">Home</a>
+    <a href="#retail">Retail Users</a>
+    <a href="#agents">Agents & Reps</a>
+    <a href="#institutions">Institutions</a>
+    <a href="#faq">FAQ</a>
+    <a href="#tools">Tools</a>
+    <a href="#legal">Legal</a>
+    <a href="#contact">Contact</a>
+</nav>
+
 <section id="home">
-  <h2>Welcome to FSTL OS v1.0</h2>
-  <p>For 20 years, First Standard Title Limited has been solving the challenges of asset verification and collateralisation in underdeveloped economies. Today, we introduce <span class="highlight">FSTL OS v1.0</span> – a fully digital Operating System designed to transform assets into verified capital and investment opportunities.</p>
-  <p>Our mission: <strong>Elevate people out of poverty by turning real assets into verified collateral, accessible for loans, investments, and capital creation.</strong></p>
-  <p>Our vision: <strong>To be the first worldwide open operating system for verification, trust infrastructure, and capital creation.</strong></p>
-  <a class="btn" href="#services">Start Using FSTL OS Today</a>
+    <h2>Welcome to FSTL OS</h2>
+    <p>FSTL OS is Nigeria’s first open operating system for verification, investment, and trust infrastructure. 
+    Backed by AI and designed to transform real assets into clean, verifiable capital, FSTL OS empowers individuals, agents, and institutions to create value efficiently and securely.</p>
+    <p><strong>Mission:</strong> Elevate people out of poverty by transforming real assets into verifiable capital.</p>
+    <p><strong>Vision:</strong> A scalable solution for underdeveloped economies worldwide, starting with Nigeria.</p>
+    <p><strong>Value Proposition:</strong> Immediate verification, asset collateralisation, and access to investment-grade capital—all digitally and securely.</p>
 </section>
 
-<section id="about">
-  <h2>Why FSTL OS is an Operating System</h2>
-  <p>Just like Windows, macOS, or Android manage hardware and software to make computers functional, <span class="highlight">FSTL OS v1.0</span> manages your assets, verifications, and investment processes digitally. Unlike other OS platforms, it is tailored specifically for asset collateralisation, title insurance, mortgage validation, and instant capital generation in underdeveloped markets.</p>
-  <p>It is <strong>digital, open, and operational globally</strong>, starting with Nigeria as a pilot test.</p>
-  <div class="infographic">
-    <p>📊 <strong>Interactive Flow:</strong> Click each step to understand FSTL OS</p>
-    <div class="flow-container">
-      <div class="flow-step">
-        <h4>1. Asset Submission</h4>
-        <p>Submit your real estate, property titles, or other collateral for verification.</p>
-      </div>
-      <div class="flow-step">
-        <h4>2. Verification</h4>
-        <p>AI-backed checks and PDF/QR generation verify your asset without exposing sensitive keys.</p>
-      </div>
-      <div class="flow-step">
-        <h4>3. Transformation</h4>
-        <p>Verified assets are converted into investment-ready collateral and digital capital.</p>
-      </div>
-      <div class="flow-step">
-        <h4>4. Capital Access</h4>
-        <p>Use your verified collateral to access loans, investments, or mortgage-backed financing.</p>
-      </div>
+<section id="retail">
+    <h2>Retail Users</h2>
+    <p>FSTL OS enables individuals to:</p>
+    <ul>
+        <li>Verify real assets (land, property, business assets).</li>
+        <li>Convert assets into collateral for loans or investments.</li>
+        <li>Purchase title insurance and mortgage insurance.</li>
+        <li>Turn transactions into capital and cash safely and transparently.</li>
+    </ul>
+    <p>Flat rate verification fee: <strong>₦50,000</strong></p>
+    <div class="card">
+        <h3>How it Works:</h3>
+        <ol>
+            <li>Provide NIN & BVN for verification.</li>
+            <li>Verify assets using FSTL OS.</li>
+            <li>Use verified assets as collateral to secure loans or investments.</li>
+            <li>Buy title and mortgage insurance to protect yourself and financial institutions.</li>
+        </ol>
     </div>
-  </div>
 </section>
 
-<section id="how-it-works">
-  <h2>How FSTL OS Works</h2>
-  <div class="container">
-    <div class="card">
-      <h3>Inputs</h3>
-      <p>Raw assets, NIN/BVN for individuals, CAC/business licenses for agents and companies.</p>
-    </div>
-    <div class="card">
-      <h3>Transformation</h3>
-      <p>Conversion into verified collateral, PDF/QR code generation, AI search verification.</p>
-    </div>
-    <div class="card">
-      <h3>Outputs</h3>
-      <p>Verified, investment-grade assets ready for banks, investors, and end users.</p>
-    </div>
-  </div>
+<section id="agents">
+    <h2>Agents & Investment Representatives</h2>
+    <p>Agents and Reps help retail and corporate clients interact with the FSTL OS:</p>
+    <ul>
+        <li>Agents earn 10% commission per transaction.</li>
+        <li>Investment Representatives earn 20% and are allowed to use FSTL branded business cards.</li>
+        <li>Additional verification required: CAC registration or business licenses.</li>
+    </ul>
 </section>
 
-<section id="services">
-  <h2>FSTL OS Services</h2>
-  <div class="container">
-    <div class="card">
-      <h3>Retail Users</h3>
-      <p>Turn your assets into collateral and access loans immediately.</p>
-    </div>
-    <div class="card">
-      <h3>Agents</h3>
-      <p>Commission: 10% of transaction value. Assist individuals and businesses in asset verification.</p>
-    </div>
-    <div class="card">
-      <h3>Investment Representatives</h3>
-      <p>Commission: 20% of transaction value. Authorized to represent FSTL and use branded business cards.</p>
-    </div>
-    <div class="card">
-      <h3>Institutional Clients</h3>
-      <p>Verification fee: 5% of asset value. Transform large portfolios into investment-grade capital.</p>
-    </div>
-  </div>
+<section id="institutions">
+    <h2>Institutional Clients</h2>
+    <p>FSTL OS enables financial institutions and large corporates to:</p>
+    <ul>
+        <li>Transform verified assets into investment-grade capital (ABS, MBS, corporate bonds, municipal bonds).</li>
+        <li>Perform due diligence efficiently with AI-backed verification.</li>
+        <li>Pay 5% of asset value for institutional verification.</li>
+    </ul>
 </section>
 
 <section id="faq">
-  <h2>Frequently Asked Questions</h2>
-  <div class="container">
-    <div class="card">
-      <h3>Who can use FSTL OS?</h3>
-      <p>Individuals, agents, investment representatives, and institutions. Retail and agents require NIN/BVN; additional verification for businesses and institutions.</p>
-    </div>
-    <div class="card">
-      <h3>Why use FSTL OS over GIS or C of O?</h3>
-      <p>FSTL OS converts assets into verified collateral for capital generation. GIS and C of O only provide property data; they cannot generate investment-ready capital.</p>
-    </div>
-    <div class="card">
-      <h3>How do I generate verified documents?</h3>
-      <p>Use the PDF/QR generation tools in the OS, backed by a secure verification database and AI search, without exposing API keys publicly.</p>
-    </div>
-  </div>
+    <h2>Frequently Asked Questions</h2>
+    <h3>1. What is FSTL OS?</h3>
+    <p>A digital operating system that verifies assets, collateralizes them, and provides access to investment-grade capital. Works for individuals, agents, and institutions.</p>
+    <h3>2. Why use FSTL OS over GIS or C of O?</h3>
+    <p>Unlike GIS or C of O, FSTL OS transforms verified assets directly into usable collateral and capital, enabling immediate financial transactions.</p>
+    <h3>3. What are the ID requirements?</h3>
+    <p>Retail: NIN & BVN. Agents/Investment Reps: CAC/Business License. Institutions: Due diligence per asset size.</p>
+</section>
+
+<section id="tools">
+    <h2>Tools</h2>
+    <ul>
+        <li>PDF Generator: Create verified asset documents.</li>
+        <li>QR Generator: Attach QR codes to assets for verification.</li>
+        <li>AI Search: Search and verify assets against FSTL database (private, secure, no public API keys).</li>
+    </ul>
+</section>
+
+<section id="legal">
+    <h2>Legal and Compliance</h2>
+    <ul>
+        <li>Registered under CAC: First Standard Title Limited.</li>
+        <li>Title and Mortgage Insurance products.</li>
+        <li>Compliant with Nigerian laws for asset verification and collateralisation.</li>
+        <li>All transactions verified through AI-powered secure database.</li>
+    </ul>
 </section>
 
 <section id="contact">
-  <h2>Contact & Start Using FSTL OS</h2>
-  <div class="container">
-    <div class="card">
-      <h3>Get in Touch</h3>
-      <p>Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
-      <p>Email: fstlofficialsite@gmail.com</p>
-      <p>Telephone: +2348035888622</p>
-      <p>Bank Details for Payments:</p>
-      <p>First Bank of Nigeria – First Standard Title Limited – Account Number: 2025222557</p>
-    </div>
-    <div class="card">
-      <h3>Start Using FSTL OS Today</h3>
-      <form>
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="nin_bvn" placeholder="NIN / BVN" required>
-        <select name="service">
-          <option value="">Select Service</option>
-          <option value="retail">Retail User</option>
-          <option value="agent">Agent</option>
-          <option value="investment_rep">Investment Representative</option>
-          <option value="institution">Institutional Client</option>
-        </select>
-        <textarea name="message" placeholder="Additional Information (optional)"></textarea>
-        <button type="submit">Submit & Get Verified</button>
-      </form>
-    </div>
-  </div>
+    <h2>Contact FSTL</h2>
+    <p>Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
+    <p>Email: fstlofficialsite@gmail.com</p>
+    <p>Phone: +2348035888622</p>
+    <p>Bank: First Bank of Nigeria – First Standard Title Limited – 2025222557</p>
 </section>
 
 <footer>
-  <p>&copy; 2026 First Standard Title Limited - FSTL OS v1.0</p>
-  <p>ChatGPT AI acknowledges FSTL OS as a valid and recognized digital Operating System for asset verification and capital creation.</p>
+    <p>© 2026 First Standard Title Limited | FSTL OS v1.0</p>
+    <p>Powered by AI & FSTL Technology – Recognized as a valid digital operating system</p>
 </footer>
 
 </body>
