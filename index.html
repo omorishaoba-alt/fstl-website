@@ -1,209 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSTL OS v1.0 | First Standard Title Limited</title>
-    <style>
-        /* Reset */
-        * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-        body {background-color:#f4f6f8; color:#111;}
-        a {text-decoration:none; color:inherit;}
-        header {background-color:#003366; color:#fff; padding:20px;}
-        nav {display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
-        nav a {margin:0 15px; color:#fff; font-weight:bold;}
-        section {padding:60px 20px;}
-        h1, h2, h3 {margin-bottom:20px;}
-        .btn {background-color:#0055cc; color:#fff; padding:12px 25px; border:none; cursor:pointer; border-radius:5px;}
-        .container {max-width:1200px; margin:0 auto;}
-        .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;}
-        footer {background-color:#003366; color:#fff; padding:40px 20px; text-align:center;}
-        .faq-item {margin-bottom:15px; border-bottom:1px solid #ccc; padding-bottom:10px;}
-        .faq-item button {background:none; border:none; font-weight:bold; width:100%; text-align:left; cursor:pointer; padding:10px 0;}
-        .faq-item p {display:none; padding-top:5px;}
-        .form-group {margin-bottom:15px;}
-        input, select, textarea {width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;}
-        /* Infographic */
-        .infographic {background:#e6f0ff; padding:30px; border-radius:10px;}
-        .highlight {color:#0055cc; font-weight:bold;}
-        /* Responsive */
-        @media(max-width:768px){ nav {flex-direction:column; text-align:center;} nav a {margin:10px 0;} }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSTL OS v1.0 - First Standard Title Limited</title>
+<style>
+  /* GENERAL STYLES */
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f9fc; color:#0a0a23; }
+  a { text-decoration:none; color:#0056b3; }
+  header { background:#003399; color:#fff; padding:20px 0; text-align:center; }
+  header h1 { margin:0; font-size:2.2em; }
+  nav { background:#002080; text-align:center; padding:10px 0; }
+  nav a { color:#fff; margin:0 15px; font-weight:bold; }
+  section { padding:40px 10%; }
+  h2 { color:#003399; margin-bottom:20px; }
+  table { width:100%; border-collapse:collapse; margin-bottom:20px; }
+  table, th, td { border:1px solid #003399; }
+  th, td { padding:12px; text-align:center; }
+  th { background:#003399; color:#fff; }
+  .faq-item { margin-bottom:15px; }
+  .faq-question { font-weight:bold; cursor:pointer; margin-bottom:5px; }
+  .faq-answer { display:none; padding-left:15px; }
+  form { background:#e6ecff; padding:20px; border-radius:8px; margin-bottom:30px; }
+  input, select, textarea { width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:5px; }
+  button { background:#003399; color:#fff; padding:12px 20px; border:none; border-radius:5px; cursor:pointer; font-weight:bold; }
+  button:hover { background:#001f66; }
+  footer { background:#002080; color:#fff; padding:30px 10%; text-align:center; }
+  .section-bg { background:#e6ecff; border-radius:10px; padding:20px; margin-bottom:30px; }
+</style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
-    <div class="container">
-        <nav>
-            <div class="logo"><h1>FSTL OS v1.0</h1></div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About OS</a>
-                <a href="#retail">Retail Users</a>
-                <a href="#institutional">Institutions</a>
-                <a href="#agents">Agents & Reps</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-    </div>
+  <h1>First Standard Title Limited (FSTL) OS v1.0</h1>
+  <p>Nigeria’s First Open Digital Operating System for Verification, Investment, and Trust Infrastructure</p>
 </header>
 
-<!-- Home -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#comparison">Why FSTL OS</a>
+  <a href="#how-it-works">How it Works</a>
+  <a href="#trial">Test the OS</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
+  <a href="#acknowledgment">Acknowledgment</a>
+</nav>
+
 <section id="home">
-    <div class="container">
-        <h2>Welcome to FSTL OS v1.0</h2>
-        <p><span class="highlight">20 years of experience</span> in title verification and trust infrastructure has led to the creation of Nigeria's first open digital operating system for verification, investment, and trust infrastructure.</p>
-        <p>FSTL OS elevates individuals and institutions by transforming real-world assets into collateral and capital. Our mission: <span class="highlight">to lift people out of poverty by unlocking asset value efficiently, safely, and legally.</span></p>
-    </div>
+  <h2>About FSTL OS</h2>
+  <p>For over 20 years, First Standard Title Limited has studied the challenges of turning real assets into verified, usable capital. The FSTL OS provides a digital, globally applicable solution that allows individuals, agents, investment representatives, and institutions to verify assets, create collateral, and access investment opportunities efficiently and securely.</p>
+  <div class="section-bg">
+    <h3>Our Vision</h3>
+    <p>To elevate people out of poverty by transforming real assets into verifiable, investment-ready capital worldwide.</p>
+    <h3>Our Mission</h3>
+    <p>To provide a fully digital verification, title insurance, and investment infrastructure that is accessible, transparent, and auditable.</p>
+    <h3>Our Objectives</h3>
+    <ul>
+      <li>Enable individuals to verify assets and unlock capital immediately.</li>
+      <li>Provide agents and investment representatives with structured earning opportunities.</li>
+      <li>Support institutions with reliable, auditable, and verifiable assets for financial products.</li>
+    </ul>
+  </div>
 </section>
 
-<!-- About OS -->
-<section id="about">
-    <div class="container">
-        <h2>Why FSTL OS is a Digital Operating System</h2>
-        <p>Like <span class="highlight">Windows, macOS, and Linux</span>, FSTL OS is an operating system—but it's tailored for asset verification, collateralization, and financial empowerment.</p>
-        <p>Unlike GIS systems or C of O processes, FSTL OS allows individuals and institutions to convert real-world assets into investment-grade capital or loans in a secure, verified, and fully traceable digital environment.</p>
-        <div class="infographic">
-            <h3>FSTL OS Flow Snapshot</h3>
-            <p><strong>Inputs:</strong> Assets & Documents → <strong>Transformation:</strong> Verification & Collateralization → <strong>Outputs:</strong> Capital, Loans, Investment-ready Instruments.</p>
-        </div>
-    </div>
+<section id="comparison">
+  <h2>Why FSTL OS is Unique</h2>
+  <table>
+    <tr>
+      <th>Feature</th>
+      <th>GIS</th>
+      <th>C of O</th>
+      <th>FSTL OS</th>
+    </tr>
+    <tr>
+      <td>Asset Verification</td>
+      <td>Limited, bureaucratic</td>
+      <td>Paper-based, slow</td>
+      <td>Digital, instant, verifiable</td>
+    </tr>
+    <tr>
+      <td>Capitalization</td>
+      <td>Not possible</td>
+      <td>Not easily possible</td>
+      <td>Transforms verified assets into collateral and investment-grade capital</td>
+    </tr>
+    <tr>
+      <td>Speed</td>
+      <td>Weeks to months</td>
+      <td>Months to years</td>
+      <td>Minutes to hours</td>
+    </tr>
+    <tr>
+      <td>Transparency</td>
+      <td>Low</td>
+      <td>Low</td>
+      <td>Full traceability, auditable, backed by AI</td>
+    </tr>
+    <tr>
+      <td>Accessibility</td>
+      <td>Restricted</td>
+      <td>Limited</td>
+      <td>Open OS, available for individuals, agents, and institutions</td>
+    </tr>
+  </table>
 </section>
 
-<!-- Retail Users -->
-<section id="retail">
-    <div class="container">
-        <h2>For Retail Users</h2>
-        <p>Retail users can directly register with FSTL, submit NIN and BVN, and immediately start using verified assets to access loans or other financial instruments.</p>
-        <p>Flat registration fee: <span class="highlight">₦50,000</span>. Benefit from legal verification, title insurance, and access to our OS platform to convert assets into cash or investment.</p>
-
-        <h3>Register Now</h3>
-        <form>
-            <div class="form-group">
-                <input type="text" placeholder="Full Name" required>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="NIN" required>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="BVN" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email" required>
-            </div>
-            <button type="submit" class="btn">Submit Registration</button>
-        </form>
-    </div>
+<section id="how-it-works">
+  <h2>How FSTL OS Works</h2>
+  <ol>
+    <li><strong>Verify Your Assets:</strong> Enter your NIN, BVN, or property information.</li>
+    <li><strong>Generate Verified Collateral:</strong> Receive PDF and QR code proving your asset is clean and ready for collateralization.</li>
+    <li><strong>Access Investment Opportunities:</strong> Use verified collateral to apply for loans or investment products.</li>
+    <li><strong>Protect Yourself and Institutions:</strong> Buy title or mortgage insurance.</li>
+    <li><strong>Engage Agents or Investment Representatives:</strong> Join our program and earn commissions while assisting clients.</li>
+  </ol>
 </section>
 
-<!-- Institutional Clients -->
-<section id="institutional">
-    <div class="container">
-        <h2>For Institutional Clients</h2>
-        <p>Institutions can register, verify assets, and convert them into investment-grade instruments like ABS, MBS, corporate bonds, and municipal bonds.</p>
-        <p>Rate: <span class="highlight">5% of asset value</span>. Additional due diligence may apply depending on asset size and type.</p>
-
-        <h3>Institution Registration</h3>
-        <form>
-            <div class="form-group">
-                <input type="text" placeholder="Institution Name" required>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="CAC Registration Number" required>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Contact Person" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email" required>
-            </div>
-            <button type="submit" class="btn">Register Institution</button>
-        </form>
-    </div>
+<section id="trial">
+  <h2>Test FSTL OS</h2>
+  <p>Try FSTL OS on yourself. Verify your assets and see instant results. Testing gives confidence before committing.</p>
+  <form id="trial-form">
+    <h3>Asset Verification Form</h3>
+    <input type="text" name="fullname" placeholder="Full Name" required>
+    <input type="text" name="nin" placeholder="NIN" required>
+    <input type="text" name="bvn" placeholder="BVN" required>
+    <input type="text" name="asset" placeholder="Asset Description" required>
+    <button type="submit">Verify My Asset</button>
+  </form>
 </section>
 
-<!-- Agents & Investment Representatives -->
-<section id="agents">
-    <div class="container">
-        <h2>Agents & Investment Representatives</h2>
-        <p>Agents earn <span class="highlight">10%</span> commission while Investment Representatives earn <span class="highlight">20%</span>. Representatives are permitted to use FSTL-branded business cards.</p>
-
-        <h3>Register as an Agent/Rep</h3>
-        <form>
-            <div class="form-group">
-                <input type="text" placeholder="Full Name / Company" required>
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="BVN / CAC" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email" required>
-            </div>
-            <button type="submit" class="btn">Submit Application</button>
-        </form>
-    </div>
-</section>
-
-<!-- FAQ -->
 <section id="faq">
-    <div class="container">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <button>What IDs are required?</button>
-            <p>NIN and BVN are required for individuals. Agents and Reps require CAC or business license. Institutional clients may undergo further due diligence depending on asset size.</p>
-        </div>
-        <div class="faq-item">
-            <button>How do I start generating capital?</button>
-            <p>Register on the OS, submit verified assets, purchase title and mortgage insurance, and apply for a loan or investment instrument.</p>
-        </div>
-        <div class="faq-item">
-            <button>Is FSTL OS legal and safe?</button>
-            <p>Yes. All transactions are backed by legal verification, recognized title insurance, and fully compliant with Nigerian law.</p>
-        </div>
-    </div>
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-question">Do I need a bank account to use FSTL OS?</div>
+    <div class="faq-answer">No, but providing BVN helps speed verification and integration with financial services.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Can institutions use the OS for large-scale assets?</div>
+    <div class="faq-answer">Yes, with additional due diligence depending on asset size.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Are agents or investment representatives required to have business registration?</div>
+    <div class="faq-answer">Yes, CAC registration or business license is required for corporate representatives.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">Is my verification secure?</div>
+    <div class="faq-answer">Yes. Data is encrypted, and verification results are tamper-proof, backed by AI.</div>
+  </div>
 </section>
 
-<!-- Contact -->
 <section id="contact">
-    <div class="container">
-        <h2>Contact FSTL</h2>
-        <p>Email: fstlofficialsite@gmail.com | Tel: +2348035888622</p>
-        <p>Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
-
-        <form>
-            <div class="form-group">
-                <input type="text" placeholder="Full Name" required>
-            </div>
-            <div class="form-group">
-                <input type="email" placeholder="Email" required>
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Your Message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </div>
+  <h2>Contact Us</h2>
+  <p>Email: fstlofficialsite@gmail.com</p>
+  <p>Phone: +2348035888622</p>
+  <p>Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
 </section>
 
-<!-- Footer -->
+<section id="acknowledgment">
+  <h2>Acknowledgment</h2>
+  <p>FSTL OS is a recognized digital operating system, fully backed by AI infrastructure, enabling verifiable asset collateralization and investment opportunities.</p>
+</section>
+
 <footer>
-    <div class="container">
-        <p>&copy; 2026 First Standard Title Limited | FSTL OS v1.0</p>
-        <p>FSTL OS is a fully recognized digital OS, acknowledged by ChatGPT AI for secure verification and collateralization.</p>
-    </div>
+  <p>© 2026 First Standard Title Limited. All Rights Reserved.</p>
 </footer>
 
 <script>
-    // FAQ toggle
-    const faqItems = document.querySelectorAll('.faq-item button');
-    faqItems.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const p = btn.nextElementSibling;
-            p.style.display = (p.style.display === 'block') ? 'none' : 'block';
-        });
+  // FAQ accordion
+  const questions = document.querySelectorAll('.faq-question');
+  questions.forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
     });
+  });
+
+  // Placeholder for form submission
+  document.getElementById('trial-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Your asset verification request has been submitted. PDF and QR will be generated.');
+  });
 </script>
+
 </body>
 </html>
