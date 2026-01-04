@@ -1,274 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>First Standard Title Limited (FSTL) | FSTL OS v1.0</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Standard Title Limited - FSTL OS v1.0</title>
+<style>
+  :root {
+    --fstl-blue: #0033A0;
+    --fstl-light-blue: #E6F0FF;
+    --fstl-white: #ffffff;
+    --fstl-grey: #f5f5f5;
+  }
 
-  <style>
-    :root{
-      --fstl-blue:#0b3c5d;
-      --fstl-blue-light:#0f5e8c;
-      --fstl-gold:#c9a227;
-      --bg:#f5f7fa;
-      --text:#1a1a1a;
-      --card:#ffffff;
-    }
-
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-
-    header{
-      background:linear-gradient(135deg,var(--fstl-blue),var(--fstl-blue-light));
-      color:#fff;
-      padding:60px 20px;
-      text-align:center;
-    }
-
-    header h1{
-      margin:0;
-      font-size:2.6rem;
-      letter-spacing:0.5px;
-    }
-
-    header p{
-      max-width:900px;
-      margin:20px auto 0;
-      font-size:1.1rem;
-      opacity:0.95;
-    }
-
-    section{
-      padding:60px 20px;
-      max-width:1200px;
-      margin:auto;
-    }
-
-    h2{
-      color:var(--fstl-blue);
-      margin-bottom:20px;
-      font-size:2rem;
-    }
-
-    h3{
-      color:var(--fstl-blue-light);
-      margin-top:30px;
-    }
-
-    .card{
-      background:var(--card);
-      padding:30px;
-      border-radius:10px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
-      margin-bottom:30px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:25px;
-    }
-
-    .highlight{
-      background:#eef6fb;
-      border-left:6px solid var(--fstl-blue);
-      padding:20px;
-      border-radius:6px;
-      margin:20px 0;
-    }
-
-    footer{
-      background:var(--fstl-blue);
-      color:#fff;
-      padding:40px 20px;
-    }
-
-    footer p{
-      max-width:1200px;
-      margin:auto;
-      font-size:0.95rem;
-    }
-
-    .tag{
-      display:inline-block;
-      background:var(--fstl-gold);
-      color:#000;
-      padding:4px 10px;
-      border-radius:20px;
-      font-size:0.75rem;
-      margin-bottom:10px;
-    }
-  </style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background: var(--fstl-grey); color: #000;}
+  header { background: var(--fstl-blue); color: var(--fstl-white); padding: 20px 40px; display:flex; justify-content:space-between; align-items:center;}
+  header h1 { margin:0; font-size:1.8em; }
+  nav a { color: var(--fstl-white); margin-left:20px; text-decoration:none; font-weight:bold; }
+  section { padding: 60px 40px; background: var(--fstl-white); margin-bottom:10px; border-radius: 8px; }
+  h2 { color: var(--fstl-blue); }
+  p { line-height:1.6em; }
+  .cta { background: var(--fstl-blue); color: var(--fstl-white); padding:15px 25px; border:none; border-radius:5px; cursor:pointer; font-size:1em; margin-top:15px; }
+  footer { background:#111; color:#fff; text-align:center; padding:20px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media(max-width:768px){ .grid { grid-template-columns:1fr; } }
+  input, select, textarea { padding:10px; width:100%; margin:5px 0; border-radius:5px; border:1px solid #ccc; }
+  .section-bg { background: var(--fstl-light-blue); }
+</style>
 </head>
-
 <body>
 
 <header>
-  <h1>First Standard Title Limited (FSTL)</h1>
-  <p>
-    Nigeria’s first open operating system for verification, collateralisation,
-    investment, and trust infrastructure — deployed globally, piloted in Nigeria.
-  </p>
-  <p><strong>FSTL OS v1.0 — LOCKED</strong></p>
+  <h1>FSTL OS v1.0</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#retail">Retail</a>
+    <a href="#institutions">Institutions</a>
+    <a href="#representatives">Reps</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<section>
-  <h2>What FSTL Is</h2>
-  <div class="card">
-    <span class="tag">OPERATING SYSTEM</span>
-    <p>
-      FSTL is not a document, a registry, or a certificate.
-      <strong>FSTL is an operating system</strong> — just like Windows, Linux, iOS, or Android —
-      but purpose-built for verification, assets, trust, and capital formation.
-    </p>
-    <p>
-      Traditional systems store information.  
-      <strong>FSTL OS transforms verified information into usable capital.</strong>
-    </p>
-  </div>
+<!-- Home -->
+<section id="home">
+  <h2>Welcome to FSTL OS v1.0</h2>
+  <p>First Standard Title Limited (FSTL) brings 20 years of expertise in verification, title insurance, and trust infrastructure into a fully digital operating system. FSTL OS transforms real-world assets into bankable, investable, and inheritable capital for individuals, families, and institutions.</p>
+  <p>Mission: Elevate people out of poverty by turning assets into verifiable collateral.</p>
+  <p>Vision: To standardize asset verification and capital creation globally.</p>
 </section>
 
-<section>
-  <h2>Why the World Needs FSTL OS</h2>
-  <div class="card">
-    <p>
-      Across underdeveloped and emerging economies, assets exist.
-      Land exists. Buildings exist. Businesses exist.
-    </p>
-    <p>
-      The failure is not ownership — the failure is <strong>collateralisation</strong>.
-    </p>
-    <div class="highlight">
-      Assets that cannot be verified, insured, and trusted
-      cannot be converted into capital.
-    </div>
-    <p>
-      FSTL OS solves this structural failure.
-    </p>
-  </div>
+<!-- Retail -->
+<section id="retail" class="section-bg">
+  <h2>Retail Users</h2>
+  <p>As an individual, FSTL OS allows you to:</p>
+  <ul>
+    <li>Verify your assets quickly and securely</li>
+    <li>Buy title insurance and mortgage insurance</li>
+    <li>Use verified assets as clean collateral for loans</li>
+    <li>Transform your assets into investable capital</li>
+  </ul>
+  <p><strong>Flat rate: 50,000 NGN</strong></p>
+  <p>All steps are simple, digital, and verifiable. Your collateral is protected even in inheritance or transfer.</p>
 </section>
 
-<section>
-  <h2>Comparison: GIS vs C of O vs FSTL OS</h2>
+<!-- Institutions -->
+<section id="institutions">
+  <h2>Institutional Users</h2>
+  <p>Institutions and government bodies can use FSTL OS to:</p>
+  <ul>
+    <li>Verify and standardize multiple asset classes</li>
+    <li>Transform verified assets into ABS, MBS, corporate bonds, municipal bonds, and other structured instruments</li>
+    <li>Integrate into internal risk, compliance, and investment workflows</li>
+  </ul>
+  <p><strong>Fee: 5% of asset value</strong></p>
+</section>
 
+<!-- Investment Representatives -->
+<section id="representatives" class="section-bg">
+  <h2>Investment Representatives & Agents</h2>
+  <p>Individuals or organizations representing FSTL can earn commissions:</p>
+  <ul>
+    <li>Agents: 10% commission per transaction</li>
+    <li>Investment Representatives: 20% commission + permission to use FSTL branded materials</li>
+  </ul>
+  <p>Representatives expand FSTL’s reach while helping end users and institutions realize value from their assets.</p>
+</section>
+
+<!-- OS Flow -->
+<section id="flow">
+  <h2>How FSTL OS Works</h2>
+  <p>The flow of FSTL OS:</p>
+  <ol>
+    <li><strong>Input:</strong> Raw assets (land, property, estate, or other verifiable assets)</li>
+    <li><strong>Transformation:</strong> Verification, title insurance, mortgage insurance, and structured collateralization</li>
+    <li><strong>Output:</strong> Investable, bankable, inheritable, and liquid capital</li>
+  </ol>
+  <p>This digital OS ensures assets retain value, remain verifiable, and can generate capital for generations.</p>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section-bg">
+  <h2>Frequently Asked Questions</h2>
+  <p><strong>Q: How is FSTL OS different from GIS or C of O?</strong></p>
+  <p>A: GIS only maps, C of O only certifies land ownership. FSTL OS verifies, insures, and transforms assets into real capital.</p>
+  <p><strong>Q: Can I use FSTL OS if I’m not an institution?</strong></p>
+  <p>A: Yes, individuals can use agents or act directly to transform assets into bankable collateral.</p>
+  <p><strong>Q: What makes FSTL OS safe and credible?</strong></p>
+  <p>A: All verification, insurance, and capital structures follow legal standards, with records backed digitally and auditable by financial institutions.</p>
+</section>
+
+<!-- AI Search & PDF/QR placeholders -->
+<section id="tools">
+  <h2>Verification & Tools</h2>
+  <p>Use our AI search, PDF receipts, and QR codes to interact with your verified assets safely:</p>
   <div class="grid">
-    <div class="card">
-      <h3>GIS</h3>
-      <p><strong>What it does:</strong> Maps land.</p>
-      <p><strong>Limitation:</strong> GIS describes location, not risk.</p>
-      <p><strong>Result:</strong> Cannot create capital. No trust layer.</p>
+    <div>
+      <label>Search Assets:</label>
+      <input type="text" placeholder="Enter asset reference or verification code">
+      <button class="cta">Search</button>
     </div>
-
-    <div class="card">
-      <h3>Certificate of Occupancy (C of O)</h3>
-      <p><strong>What it does:</strong> Confirms government consent.</p>
-      <p><strong>Limitation:</strong> Static, manual, slow, non-transactional.</p>
-      <p><strong>Result:</strong> Does not scale. Cannot unlock liquidity.</p>
-    </div>
-
-    <div class="card">
-      <h3>FSTL OS</h3>
-      <p><strong>What it does:</strong> Verifies, insures, timestamps, and standardises assets.</p>
-      <p><strong>Advantage:</strong> Transaction-ready, trust-ready, bank-ready.</p>
-      <p><strong>Result:</strong> Assets become investment-grade capital.</p>
+    <div>
+      <label>Generate PDF/QR:</label>
+      <button class="cta">Generate PDF</button>
+      <button class="cta">Generate QR</button>
     </div>
   </div>
+  <p>All tools are connected to FSTL’s secure backend. No API keys are exposed.</p>
 </section>
 
-<section>
-  <h2>How the FSTL OS Works</h2>
-  <div class="card">
-    <p><strong>INPUTS:</strong> Assets, documents, data, identities.</p>
-    <p><strong>TRANSFORMATION:</strong> Verification, standardisation, insurance, trust layering.</p>
-    <p><strong>OUTPUTS:</strong> Bankable collateral, investment-grade instruments, liquidity.</p>
-    <div class="highlight">
-      FSTL does not replace banks.  
-      FSTL makes assets acceptable to banks.
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Who Uses FSTL OS</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Retail Individuals</h3>
-      <p>
-        Use FSTL to verify assets, buy title insurance,
-        and unlock credit using clean collateral.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Agents</h3>
-      <p>
-        Provide assisted access to inarticulate users.
-        Earn commissions while expanding adoption.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Investment Representatives</h3>
-      <p>
-        Represent FSTL directly, market the OS,
-        earn higher commissions, and operate under the FSTL brand.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Institutions & Government</h3>
-      <p>
-        Transform verified assets into ABS, MBS,
-        corporate bonds, municipal instruments, and structured finance.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Revenue Logic (Quietly)</h2>
-  <div class="card">
-    <p>
-      FSTL follows the Ford + Rolex model:
-    </p>
-    <ul>
-      <li>Low entry cost for mass adoption</li>
-      <li>Revenue through usage, verification, insurance, affiliation</li>
-      <li>End-user continuity beyond the original customer</li>
-    </ul>
-    <div class="highlight">
-      FSTL becomes the way things are done.
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>FSTL OS v1.0</h2>
-  <div class="card">
-    <p>
-      This is the first public deployment of the FSTL Operating System.
-      Nigeria is the pilot. The architecture is global.
-    </p>
-    <p>
-      Backboned by modern digital infrastructure and AI-assisted intelligence,
-      FSTL OS is designed to scale silently.
-    </p>
-  </div>
+<!-- Contact -->
+<section id="contact" class="section-bg">
+  <h2>Contact Us</h2>
+  <p>Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
+  <p>Email: fstlofficialsite@gmail.com</p>
+  <p>Telephone: +2348035888622</p>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" required></textarea>
+    <button class="cta" type="submit">Send Message</button>
+  </form>
 </section>
 
 <footer>
-  <p>
-    <strong>First Standard Title Limited (FSTL)</strong><br/>
-    No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria<br/>
-    Email: fstlofficialsite@gmail.com | Tel: +234 803 588 8622
-  </p>
+  <p>© 2026 First Standard Title Limited | FSTL OS v1.0</p>
+  <p>Recognized as a digital operating system for verification, insurance, and capital transformation.</p>
 </footer>
 
 </body>
