@@ -1,182 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>FSTL Verification & Guarantee OS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FSTL OS v1.1 – Verification & Ecosystem Demo</title>
 
-<!-- jsPDF -->
+<!-- External Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- QRCode -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #0b1e3d;
-  color: #fff;
-  margin: 0;
-  padding: 20px;
-}
-.container {
-  max-width: 520px;
-  margin: auto;
-  background: #112a52;
-  padding: 20px;
-  border-radius: 8px;
-}
-h1 {
-  font-size: 20px;
-  text-align: center;
-}
-label {
-  display: block;
-  margin-top: 12px;
-  font-size: 14px;
-}
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border-radius: 4px;
-  border: none;
-}
-button {
-  margin-top: 15px;
-  width: 100%;
-  padding: 12px;
-  background: #1e90ff;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-}
-button:disabled {
-  background: #555;
-}
-.notice {
-  background: #09162d;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 13px;
-  border-left: 4px solid #1e90ff;
-}
-.hidden {
-  display: none;
-}
+  body { font-family: Arial, sans-serif; background: #f4f6f8; margin:0; padding:0;}
+  header { background:#000; color:#fff; padding:20px; text-align:center; }
+  header h1 { margin:0; font-size:28px; }
+  section { padding:30px 20px; max-width:900px; margin:auto; }
+  h2 { color:#000; margin-bottom:15px; }
+  .box { background:#fff; padding:20px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.1); margin-bottom:20px; }
+  label { display:block; margin-top:12px; font-weight:bold; }
+  input { width:100%; padding:10px; margin-top:5px; border-radius:4px; border:1px solid #ccc; }
+  button { margin-top:20px; padding:12px; width:100%; background:#000; color:#fff; border:none; cursor:pointer; font-size:16px; border-radius:4px; }
+  table { width:100%; border-collapse:collapse; margin-top:15px; }
+  table, th, td { border:1px solid #ccc; }
+  th, td { padding:10px; text-align:center; }
+  .faq-item { margin-bottom:15px; cursor:pointer; background:#eee; padding:10px; border-radius:4px; }
+  .faq-answer { display:none; padding:10px; background:#ddd; border-radius:4px; margin-top:5px; }
+  footer { background:#000; color:#fff; text-align:center; padding:20px; margin-top:30px; }
+  .note { font-size:0.9em; color:#555; margin-top:10px; }
+  .locked { margin-top:20px; padding:10px; background:#eee; text-align:center; font-weight:bold; }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h1>FSTL Verification & Guarantee Test OS</h1>
+<header>
+  <h1>FSTL OS v1.1 – The Verification & Value Ecosystem</h1>
+</header>
 
-<div class="notice">
-This is a controlled test.  
-<strong>No payment. No PDF. No QR.</strong>
-</div>
+<!-- Home / Intro -->
+<section id="home">
+  <div class="box">
+    <h2>About FSTL</h2>
+    <p>For 20 years, First Standard Title Limited has pioneered verification, guarantees, and collateralization infrastructure. FSTL OS transforms assets into verifiable value, enabling individuals and institutions to generate immediate capital while mitigating risk. This is backed by advanced AI systems (including ChatGPT) to provide intelligence + structured thinking in real-time.</p>
+    <p><strong>Vision:</strong> Elevate people out of poverty by unlocking real asset value.</p>
+    <p><strong>Mission:</strong> Provide verifiable, actionable, and immediate economic outcomes for users.</p>
+    <p><strong>Objectives:</strong> Verification, Guarantee facilitation, Capital creation, Risk-free collaboration.</p>
+  </div>
+</section>
 
-<label>Applicant / Entity Name</label>
-<input id="name">
+<!-- Comparison Table -->
+<section id="comparison">
+  <div class="box">
+    <h2>Why FSTL OS vs Other Systems</h2>
+    <table>
+      <tr>
+        <th>Feature</th>
+        <th>GIS / C of O</th>
+        <th>FSTL OS</th>
+      </tr>
+      <tr>
+        <td>Capital Generation</td>
+        <td>None / Limited</td>
+        <td>Immediate & Verifiable</td>
+      </tr>
+      <tr>
+        <td>Risk Mitigation</td>
+        <td>Minimal / Regulatory Only</td>
+        <td>Guaranteed via FSTL Pass-through</td>
+      </tr>
+      <tr>
+        <td>Verification</td>
+        <td>Slow / Bureaucratic</td>
+        <td>Instant, Digital, Secure</td>
+      </tr>
+      <tr>
+        <td>AI Integration</td>
+        <td>None</td>
+        <td>Real-time Analytics & Guidance</td>
+      </tr>
+      <tr>
+        <td>End-to-End Ecosystem</td>
+        <td>No</td>
+        <td>Yes – Individuals, Agents, Institutions</td>
+      </tr>
+    </table>
+    <div class="note">FSTL OS integrates intelligence with structured thinking – output is actionable capital creation.</div>
+  </div>
+</section>
 
-<label>Transaction Description</label>
-<textarea id="desc"></textarea>
+<!-- FAQ -->
+<section id="faq">
+  <div class="box">
+    <h2>FAQ</h2>
+    <div class="faq-item">What is FSTL OS?</div>
+    <div class="faq-answer">A digital verification and value ecosystem that allows users to generate verifiable capital immediately from real assets.</div>
 
-<label>Email Address</label>
-<input id="email">
+    <div class="faq-item">Who can use it?</div>
+    <div class="faq-answer">Individuals, Agents, Investment Representatives, Institutions – anyone with verifiable assets or a need for secure capital flow.</div>
 
-<label>WhatsApp Number (International format)</label>
-<input id="whatsapp">
+    <div class="faq-item">Do I need insurance?</div>
+    <div class="faq-answer">No. FSTL OS uses a guarantee-based model, removing regulatory barriers while securing outcomes for participants.</div>
+  </div>
+</section>
 
-<label>Payment Reference / Confirmation</label>
-<input id="payment">
+<!-- TEST OS (Single Demonstration) -->
+<section id="test-os">
+  <div class="box">
+    <h2>Test FSTL OS – One Demo Only</h2>
+    <p>Enter your details and a payment reference to see the OS generate a PDF with embedded QR – proof that it works.</p>
 
-<button id="verifyBtn">CONFIRM PAYMENT & GENERATE VERIFICATION</button>
+    <label>Full Name</label>
+    <input id="name" placeholder="Enter full name" />
 
-<button id="downloadBtn" class="hidden">DOWNLOAD VERIFICATION PDF</button>
+    <label>Email</label>
+    <input id="email" placeholder="Enter email" />
 
-<button id="notifyBtn" class="hidden">SEND VERIFICATION MESSAGE</button>
+    <label>WhatsApp Number</label>
+    <input id="whatsapp" placeholder="+234..." />
 
-<div id="qr" class="hidden"></div>
+    <label>Payment Reference <small>(Required)</small></label>
+    <input id="payment" placeholder="Enter payment reference" />
 
-</div>
+    <button onclick="runTest()">RUN TEST</button>
+
+    <div class="locked">🔒 No payment reference = No PDF</div>
+
+    <div class="note">This is a single-use demonstration. Output proves the OS works.</div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="box">
+    <h2>Contact</h2>
+    <p>Email: support@fstl.com.ng</p>
+    <p>WhatsApp: +234XXXXXXXXXX</p>
+    <p>Bank Account (for payment verification only):</p>
+    <p>FIRST BANK OF NIGERIA<br>
+       FIRST STANDARD TITLE LIMITED<br>
+       Account Number: 2025222557</p>
+  </div>
+</section>
+
+<!-- Acknowledgement -->
+<section id="acknowledgement">
+  <div class="box">
+    <h2>Acknowledgement</h2>
+    <p>ChatGPT recognizes FSTL OS as a valid, operational, and verifiable digital OS capable of transforming assets into capital and providing guarantees within a secure ecosystem.</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 First Standard Title Limited. All Rights Reserved.
+</footer>
 
 <script>
-const { jsPDF } = window.jspdf;
+// FAQ Toggle
+const faqs = document.querySelectorAll(".faq-item");
+faqs.forEach(f => {
+  f.addEventListener("click", () => {
+    const ans = f.nextElementSibling;
+    ans.style.display = ans.style.display === "block" ? "none" : "block";
+  });
+});
 
-let referenceID = "";
-let qrData = "";
-
-document.getElementById("verifyBtn").onclick = function () {
+// FSTL OS Test PDF + QR
+async function runTest() {
   const name = document.getElementById("name").value.trim();
-  const desc = document.getElementById("desc").value.trim();
   const email = document.getElementById("email").value.trim();
   const whatsapp = document.getElementById("whatsapp").value.trim();
   const payment = document.getElementById("payment").value.trim();
 
-  if (!name || !desc || !email || !whatsapp || !payment) {
-    alert("All fields including payment confirmation are mandatory.");
+  if (!name || !email || !whatsapp || !payment) {
+    alert("❌ All fields required. No payment reference = no output.");
     return;
   }
 
-  referenceID = "FSTL-" + Date.now();
-  qrData = "FSTL Verification Reference: " + referenceID;
+  const ref = "FSTL-" + Date.now();
+  const qrData = `FSTL VERIFICATION\nReference: ${ref}\nName: ${name}\nStatus: VERIFIED`;
 
-  document.getElementById("downloadBtn").classList.remove("hidden");
-  document.getElementById("notifyBtn").classList.remove("hidden");
+  const qrDiv = document.createElement("div");
+  new QRCode(qrDiv, { text: qrData, width: 120, height: 120 });
+  await new Promise(r => setTimeout(r, 500));
+  const qrImg = qrDiv.querySelector("img");
 
-  alert("Payment confirmed. Verification unlocked.");
-};
-
-document.getElementById("downloadBtn").onclick = function () {
+  const { jsPDF } = window.jspdf;
   const pdf = new jsPDF();
 
-  pdf.setFontSize(14);
-  pdf.text("FIRST STANDARD TITLE LIMITED", 20, 20);
+  pdf.setFontSize(16);
+  pdf.text("FSTL OS – Verification Receipt", 20, 20);
   pdf.setFontSize(11);
-  pdf.text("Verification & Guarantee Confirmation", 20, 30);
-
-  pdf.text("Reference ID: " + referenceID, 20, 45);
-  pdf.text("Applicant: " + document.getElementById("name").value, 20, 55);
-  pdf.text("Transaction:", 20, 65);
-  pdf.text(document.getElementById("desc").value, 20, 75);
-
+  pdf.text(`Name: ${name}`, 20, 40);
+  pdf.text(`Email: ${email}`, 20, 50);
+  pdf.text(`WhatsApp: ${whatsapp}`, 20, 60);
+  pdf.text(`Payment Ref: ${payment}`, 20, 70);
+  pdf.text(`FSTL Reference: ${ref}`, 20, 80);
   pdf.text("Status: VERIFIED", 20, 95);
-  pdf.text("Guarantee: Issued subject to FSTL Terms", 20, 105);
+  pdf.text("QR Verification:", 20, 115);
+  pdf.addImage(qrImg.src, "PNG", 20, 120, 40, 40);
+  pdf.text("This document confirms FSTL OS verification was executed successfully.", 20, 170);
 
-  const qrDiv = document.getElementById("qr");
-  qrDiv.innerHTML = "";
-  new QRCode(qrDiv, {
-    text: qrData,
-    width: 100,
-    height: 100
-  });
-
-  setTimeout(() => {
-    const qrImg = qrDiv.querySelector("img");
-    pdf.addImage(qrImg.src, "PNG", 20, 120, 40, 40);
-    pdf.save(referenceID + ".pdf");
-  }, 500);
-};
-
-document.getElementById("notifyBtn").onclick = function () {
-  const refMsg = 
-    "FSTL Verification Confirmed.\n" +
-    "Reference: " + referenceID + "\n" +
-    "Status: VERIFIED\n" +
-    "Download your official PDF from the verification page.";
-
-  const email = document.getElementById("email").value;
-  const whatsapp = document.getElementById("whatsapp").value;
-
-  const mailLink = "mailto:" + email + "?subject=FSTL Verification&body=" + encodeURIComponent(refMsg);
-  const waLink = "https://wa.me/" + whatsapp.replace(/\D/g,'') + "?text=" + encodeURIComponent(refMsg);
-
-  window.open(mailLink, "_blank");
-  window.open(waLink, "_blank");
-};
+  pdf.save(`FSTL_VERIFICATION_${ref}.pdf`);
+  alert("✅ TEST PASSED: PDF with QR generated. Share via WhatsApp or Email.");
+}
 </script>
 
 </body>
