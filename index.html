@@ -3,227 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FSTL OS v1.1 – Verification & Guarantees</title>
+<title>FSTL COMET OS | Infrastructure Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    /* Reset and basic styling */
-    * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-    body {background:#f4f7f9; color:#333;}
-    header, nav, section, footer {padding:20px;}
-    a {text-decoration:none; color:#0056b3;}
-    header {background:#0044a2; color:#fff;}
-    h1, h2, h3 {margin-bottom:10px;}
-    nav ul {list-style:none; display:flex; gap:15px;}
-    nav ul li {display:inline;}
-    section {margin:20px 0; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-    footer {background:#0044a2; color:#fff; text-align:center;}
-    .btn {background:#0056b3; color:#fff; padding:10px 15px; border:none; border-radius:5px; cursor:pointer;}
-    .btn:hover {background:#003f7d;}
-    .faq-item {margin-bottom:10px;}
-    .faq-question {cursor:pointer; font-weight:bold; padding:10px; background:#e0e0e0; border-radius:5px;}
-    .faq-answer {display:none; padding:10px; border-left:4px solid #0044a2; background:#f9f9f9; border-radius:5px; margin-top:5px;}
-    table {width:100%; border-collapse:collapse; margin:15px 0;}
-    th, td {border:1px solid #ccc; padding:10px; text-align:left;}
-    th {background:#0044a2; color:#fff;}
-    .form-group {margin-bottom:10px;}
-    input, select, textarea {width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;}
-    iframe {width:100%; height:300px; border:none; margin-top:10px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f1f5f9;color:#0f172a;}
+nav{background:#0f172a;padding:18px;text-align:center;}
+nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:600;}
+.hero{background:#0f172a;color:#fff;text-align:center;padding:90px 20px;}
+.hero h1{font-size:40px;margin-bottom:15px;}
+.hero p{color:#cbd5e1;margin-bottom:20px;}
+.btn{background:#2563eb;color:#fff;padding:12px 22px;border-radius:6px;text-decoration:none;font-weight:600;}
+.container{max-width:1150px;margin:auto;padding:60px 20px;}
+.section{margin-bottom:60px;}
+.card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,0.06);margin-bottom:25px;}
+h2{margin-bottom:20px;}
+input,select,textarea,button{
+width:100%;padding:12px;margin-bottom:12px;
+border-radius:6px;border:1px solid #cbd5e1;
+}
+button{cursor:pointer;font-weight:600;}
+.primary{background:#16a34a;color:#fff;border:none;}
+.primary:hover{background:#15803d;}
+.secondary{background:#2563eb;color:#fff;border:none;}
+.secondary:hover{background:#1d4ed8;}
+.dashboard{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+.log-box{
+background:#0f172a;
+color:#e2e8f0;
+padding:15px;
+border-radius:8px;
+height:250px;
+overflow:auto;
+font-size:13px;
+}
+.metric{
+background:#e2e8f0;
+padding:15px;
+border-radius:8px;
+margin-bottom:15px;
+font-weight:600;
+}
+.footer{
+background:#0f172a;
+color:#cbd5e1;
+text-align:center;
+padding:30px;
+font-size:14px;
+}
+@media(max-width:900px){
+.dashboard{grid-template-columns:1fr;}
+.hero h1{font-size:28px;}
+}
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<header>
-    <h1>First Standard Title Limited – FSTL OS v1.1</h1>
-    <p>Verification, Guarantees, and Capitalisation Made Simple</p>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#os">What is FSTL OS</a></li>
-            <li><a href="#comparison">Comparison</a></li>
-            <li><a href="#test">Test the OS</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#ack">Acknowledgement</a></li>
-        </ul>
-    </nav>
-</header>
+<nav>
+<a href="#overview">Overview</a>
+<a href="#verification">Verification</a>
+<a href="#capital">Capital</a>
+<a href="#dashboard">Dashboard</a>
+</nav>
 
-<!-- Home -->
-<section id="home">
-    <h2>Welcome to FSTL OS</h2>
-    <p>With over 20 years of experience, First Standard Title Limited has developed a global-first operating system for verification, guarantees, and economic empowerment. Our mission is to elevate people out of poverty using real, verifiable assets, and our objective is to provide individuals, institutions, and agents with a secure and profitable ecosystem.</p>
-</section>
+<div class="hero">
+<h1>FSTL COMET OS</h1>
+<p>Phase I: Verification Infrastructure | Phase II: Title Insurance</p>
+<a href="#verification" class="btn">Start Verification</a>
+</div>
 
-<!-- What is FSTL OS -->
-<section id="os">
-    <h2>What is FSTL OS?</h2>
-    <p>FSTL OS is a digital operating system that enables asset verification, secure guarantees, and capital creation. Unlike general OS like Windows, macOS, or Linux, FSTL OS is specific to financial trust infrastructure and collateralisation.</p>
-    <ul>
-        <li>Verify assets quickly and securely</li>
-        <li>Generate guaranteed collateral for transactions</li>
-        <li>Enable revenue generation immediately</li>
-    </ul>
-</section>
+<div class="container section" id="overview">
+<h2>Executive Overview</h2>
+<div class="card">
+FSTL operates in the PropTech infrastructure sector, verifying land and landed property transactions.
+Phase I (COMET OS) structures assets through identity validation, payment enforcement,
+and digital audit logging. Phase II introduces Title Insurance to make verified assets fully bankable.
+</div>
+</div>
 
-<!-- Comparison Table -->
-<section id="comparison">
-    <h2>Why FSTL OS Works</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Feature</th>
-                <th>GIS</th>
-                <th>C of O</th>
-                <th>FSTL OS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Verification</td>
-                <td>✅</td>
-                <td>✅</td>
-                <td>✅ + AI-enhanced</td>
-            </tr>
-            <tr>
-                <td>Immediate Capitalisation</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
-            </tr>
-            <tr>
-                <td>Collateralisation</td>
-                <td>❌</td>
-                <td>Limited</td>
-                <td>✅</td>
-            </tr>
-            <tr>
-                <td>PDF + QR Proof</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
-            </tr>
-            <tr>
-                <td>Revenue Generation</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
-            </tr>
-            <tr>
-                <td>Global Use</td>
-                <td>❌</td>
-                <td>❌</td>
-                <td>✅</td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+<div class="container section" id="capital">
+<h2>Structured Capitalization</h2>
+<div class="card">
+<p><strong>Trustee Slots:</strong> <span id="slotCount">10</span> Available</p>
+<p>Capital Ranges:</p>
+<ul>
+<li>$100K – $250K</li>
+<li>$250K – $500K</li>
+<li>$500K+</li>
+</ul>
 
-<!-- Test the OS -->
-<section id="test">
-    <h2>Test the FSTL OS</h2>
-    <p>Experience a live demonstration. Enter your information below to generate a trial verification PDF with embedded QR code. Payment is required for full, real transactions.</p>
-    <form id="testForm">
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-            <label for="nin">NIN</label>
-            <input type="text" id="nin" required>
-        </div>
-        <div class="form-group">
-            <label for="bvn">BVN</label>
-            <input type="text" id="bvn" required>
-        </div>
-        <div class="form-group">
-            <label for="asset">Asset Description</label>
-            <textarea id="asset" rows="3" required></textarea>
-        </div>
-        <button type="button" class="btn" onclick="generatePDF()">Generate PDF</button>
-    </form>
-    <p id="pdfLink"></p>
-</section>
+<form id="investorForm">
+<input type="text" placeholder="Full Name*" required>
+<input type="email" placeholder="Email*" required>
+<select required>
+<option value="">Select Capital Tier*</option>
+<option>$100K-$250K</option>
+<option>$250K-$500K</option>
+<option>$500K+</option>
+</select>
+<button class="primary">Submit Interest</button>
+</form>
+</div>
+</div>
 
-<!-- FAQ -->
-<section id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-        <div class="faq-question">What IDs are required?</div>
-        <div class="faq-answer">NIN and BVN for individuals. CAC registration for businesses. Additional verification may apply depending on asset size.</div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question">How does the FSTL Guarantee work?</div>
-        <div class="faq-answer">FSTL assumes risk for compliant users, providing assurance for transactions without the regulatory burden of insurance.</div>
-    </div>
-    <div class="faq-item">
-        <div class="faq-question">How do I earn revenue?</div>
-        <div class="faq-answer">Revenue is generated through participation in the ecosystem: verified assets become collateral, which unlocks economic value immediately.</div>
-    </div>
-</section>
+<div class="container section" id="verification">
+<h2>Property Verification Portal</h2>
+<div class="card">
+<p>All payments go directly to FSTL First Bank Account: <strong>2025222557</strong></p>
 
-<!-- Contact -->
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Address: No. 19 Egbor Avenue, off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
-    <p>Email: fstlofficialsite@gmail.com | Phone: +2348035888622</p>
-</section>
+<form id="verifyForm">
+<input type="text" placeholder="Full Name*" required>
+<input type="tel" placeholder="Phone*" id="phone" required>
+<button type="button" class="secondary" onclick="sendOTP()">Send OTP</button>
+<input type="text" placeholder="Enter OTP*" id="otpInput" required>
+<input type="text" placeholder="Property Location*" required>
+<button class="primary">Submit Verification</button>
+</form>
 
-<!-- Acknowledgement -->
-<section id="ack">
-    <h2>Acknowledgement</h2>
-    <p>FSTL OS is powered by ChatGPT AI infrastructure and is recognized as a valid digital operating system for verification, guarantees, and capitalisation.</p>
-</section>
+<p id="receiptMsg" style="color:#16a34a;font-weight:600;"></p>
+</div>
+</div>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2026 First Standard Title Limited – FSTL OS v1.1</p>
-</footer>
+<div class="container section" id="dashboard">
+<h2>Live Infrastructure Dashboard</h2>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<div class="dashboard">
+<div>
+<div class="metric">Total Verifications: <span id="verifyCount">0</span></div>
+<div class="metric">Investor Submissions: <span id="investorCount">0</span></div>
+<div class="metric">Remaining Trustee Slots: <span id="slotMetric">10</span></div>
+</div>
+
+<div>
+<div class="log-box" id="activityLog">
+System initialized...<br>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 FSTL | COMET OS Infrastructure Layer
+</div>
+
 <script>
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', () => {
-            const a = q.nextElementSibling;
-            a.style.display = a.style.display === 'block' ? 'none' : 'block';
-        });
-    });
+let slots = 10;
+let verifyTotal = 0;
+let investorTotal = 0;
+let currentOTP = null;
 
-    // Generate PDF + QR (demo)
-    function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const name = document.getElementById('name').value;
-        const nin = document.getElementById('nin').value;
-        const bvn = document.getElementById('bvn').value;
-        const asset = document.getElementById('asset').value;
+function logActivity(message){
+let log = document.getElementById("activityLog");
+log.innerHTML += message + "<br>";
+log.scrollTop = log.scrollHeight;
+}
 
-        if(!name || !nin || !bvn || !asset){alert("All fields are required"); return;}
+function sendOTP(){
+currentOTP = Math.floor(100000 + Math.random()*900000);
+alert("Demo OTP: " + currentOTP);
+logActivity("OTP issued for verification request.");
+}
 
-        const doc = new jsPDF();
-        doc.setFontSize(16);
-        doc.text("FSTL OS Verification PDF", 20, 20);
-        doc.setFontSize(12);
-        doc.text(`Name: ${name}`, 20, 40);
-        doc.text(`NIN: ${nin}`, 20, 50);
-        doc.text(`BVN: ${bvn}`, 20, 60);
-        doc.text(`Asset: ${asset}`, 20, 70);
-        doc.text("Status: VERIFIED (Demo)", 20, 90);
+document.getElementById("verifyForm").addEventListener("submit", function(e){
+e.preventDefault();
+let enteredOTP = document.getElementById("otpInput").value;
 
-        // QR Code generation as base64 image
-        const qrDiv = document.createElement('div');
-        const qr = new QRCode(qrDiv, {
-            text: `FSTL Verification - ${name} - ${nin}`,
-            width: 100,
-            height: 100
-        });
-        setTimeout(() => {
-            const qrImg = qrDiv.querySelector('img');
-            if(qrImg) doc.addImage(qrImg.src, 'PNG', 20, 100, 50, 50);
-            doc.save(`${name.replace(/\s/g,'_')}_FSTL_Verification.pdf`);
-            document.getElementById('pdfLink').innerHTML = `<a href="#" class="btn" onclick="generatePDF()">Download Again</a>`;
-        }, 500);
-    }
+if(parseInt(enteredOTP) === currentOTP){
+verifyTotal++;
+document.getElementById("verifyCount").innerText = verifyTotal;
+document.getElementById("receiptMsg").innerText =
+"Verification Submitted. Receipt ID: FSTL-" + Date.now();
+logActivity("Verification confirmed. Receipt generated.");
+this.reset();
+}else{
+alert("Invalid OTP.");
+logActivity("Failed OTP attempt detected.");
+}
+});
+
+document.getElementById("investorForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+if(slots > 0){
+slots--;
+investorTotal++;
+document.getElementById("slotCount").innerText = slots;
+document.getElementById("slotMetric").innerText = slots;
+document.getElementById("investorCount").innerText = investorTotal;
+logActivity("New trustee interest submitted. Slot reserved.");
+this.reset();
+}else{
+alert("All trustee slots filled.");
+logActivity("Trustee submission rejected. No slots available.");
+}
+});
 </script>
 
 </body>
