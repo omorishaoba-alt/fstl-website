@@ -1,232 +1,222 @@
+
+Open with...
+Raw file content
+Skip to content
+fstl-website
+Repository navigation
+Code
+Issues
+Pull requests
+Actions
+fstl-website
+/index.html
+omorishaoba-alt
+omorishaoba-alt
+last week
+201 lines (187 loc) · 9.07 KB
+
+Code
+
+Blame
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>First Standard Title Limited | FSTL COMET OS</title>
-
-<meta name="description" content="First Standard Title Limited (FSTL) COMET OS – property verification infrastructure for secure land transactions.">
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://omorishaoba-alt.github.io/fstl-website/">
-
-<!-- Google indexing structured data -->
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"Organization",
- "name":"First Standard Title Limited",
- "alternateName":"FSTL",
- "url":"https://omorishaoba-alt.github.io/fstl-website/",
- "founder":"HRH Kabiyesi Ayodele Oogunje"
-}
-</script>
-
+<title>FSTL COMET OS | Sovereign Property Verification Infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
-body{
-font-family: Arial, Helvetica, sans-serif;
-margin:0;
-background:#f4f6f8;
-color:#222;
-line-height:1.6;
-}
-
-nav{
-background:#0f172a;
-padding:15px;
-text-align:center;
-}
-
-nav a{
-color:white;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.hero{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:100px 20px;
-}
-
-.hero h1{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.hero p{
-font-size:20px;
-color:#cbd5e1;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:8px;
-margin-bottom:25px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-
-button{
-padding:12px 20px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-}
-
-input{
-width:100%;
-padding:10px;
-margin-bottom:10px;
-border:1px solid #ccc;
-border-radius:5px;
-}
-
-.footer{
-background:#0f172a;
-color:#cbd5e1;
-text-align:center;
-padding:30px;
-}
-
+/* Base Reset */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6;}
+a{text-decoration:none;}
+h1,h2,h3{font-weight:700;}
+p{margin-bottom:1rem;}
+.container{max-width:1100px;margin:auto;padding:50px 20px;}
+.section{margin-bottom:60px;}
+.card{background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:25px;}
+nav{background:#0f172a;padding:20px;text-align:center;position:sticky;top:0;z-index:1000;}
+nav a{color:#fff;margin:0 15px;font-weight:500;transition:0.3s;}
+nav a:hover{color:#60a5fa;}
+.hero{background:#0f172a;color:#fff;text-align:center;padding:120px 20px;position:relative;}
+.hero h1{font-size:48px;margin-bottom:15px;}
+.hero p{color:#cbd5e1;font-size:20px;margin-bottom:25px;}
+.btn{display:inline-block;background:#2563eb;color:#fff;padding:16px 32px;border-radius:8px;font-weight:600;transition:0.3s;}
+.btn:hover{background:#1d4ed8;}
+.badge-ai{position:absolute;top:20px;right:20px;background:#10b981;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.counters{display:flex;flex-wrap:wrap;justify-content:space-around;margin-top:30px;}
+.counter-card{background:#f1f5f9;padding:20px;border-radius:8px;width:220px;text-align:center;margin:10px;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+.counter-card span{display:block;font-size:32px;font-weight:700;margin-bottom:5px;color:#2563eb;}
+.footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:40px 20px;font-size:14px;margin-top:50px;}
+input,select,textarea,button{width:100%;padding:12px;margin-bottom:12px;border:1px solid #cbd5e1;border-radius:6px;font-size:16px;}
+button{cursor:pointer;background:#2563eb;color:#fff;font-weight:600;transition:0.3s;}
+button:hover{background:#1d4ed8;}
 </style>
-
 </head>
-
 <body>
 
+<!-- Navigation -->
 <nav>
-
-<a href="#">Home</a>
+<a href="#hero">Home</a>
 <a href="#verification">Verification</a>
-<a href="#capital">Invest</a>
+<a href="#capital">Capitalization</a>
+<a href="#market-opportunity">Market</a>
+<a href="#nigeria-pilot">Nigeria Pilot</a>
+<a href="#faq">FAQ</a>
 <a href="#contact">Contact</a>
-
 </nav>
 
-<section class="hero">
+<!-- Hero Section -->
+<div class="hero" id="hero">
+  <h1>FSTL COMET OS</h1>
+  <p>Sovereign-Grade Land & Property Verification Infrastructure</p>
+  <a href="#verification" class="btn">Start Verification Now</a>
+  <a href="#capital" class="btn" style="margin-left:15px;">Invest / Join Trustees</a>
+  <div class="badge-ai">Verified by ChatGPT AI</div>
+</div>
 
-<h1>FSTL COMET OS</h1>
-
-<p>Sovereign Property Verification Infrastructure</p>
-
-</section>
-
-<div class="container">
-
-<div class="card">
-
+<!-- Executive Overview -->
+<div class="container section">
 <h2>Executive Overview</h2>
-
-<p>
-
-First Standard Title Limited (FSTL) provides property verification infrastructure designed to eliminate fraud in land and property transactions.
-
-The COMET OS system introduces structured verification, payment confirmation and transaction traceability.
-
-</p>
-
-</div>
-
-<div class="card" id="capital">
-
-<h2>Structured Capitalization</h2>
-
-<p>
-
-FSTL is opening limited trustee slots to support early deployment of COMET OS.
-
-</p>
-
-<ul>
-
-<li>$100,000 – Early infrastructure support</li>
-
-<li>$250,000 – Platform scaling</li>
-
-<li>$500,000+ – Strategic governance participation</li>
-
-</ul>
-
-</div>
-
-<div class="card" id="verification">
-
-<h2>Verification Portal</h2>
-
-<form>
-
-<input type="text" placeholder="Full Name" required>
-
-<input type="email" placeholder="Email" required>
-
-<input type="tel" placeholder="Phone Number" required>
-
-<input type="text" placeholder="Property Location" required>
-
-<input type="text" placeholder="Bank Name">
-
-<input type="text" placeholder="Bank Account Number">
-
-<button type="submit">Submit Verification</button>
-
-</form>
-
-</div>
-
 <div class="card">
+<p>FSTL COMET OS is a structured land and landed property verification and transaction validation system. It eliminates fraud, enforces bank-confirmed settlements, and establishes auditable transaction records for investors, buyers, and property owners.</p>
+<p>Our enterprise transforms unverified property assets into securitized, revenue-generating opportunities for investors, while providing transparency and trust in the market.</p>
+</div>
+</div>
 
+<!-- Infrastructure Framework -->
+<div class="container section">
+<h2>Infrastructure & OS Functionality</h2>
+<div class="card">
+<ul>
+<li>OTP identity verification for users</li>
+<li>Bank-confirmed payment enforcement</li>
+<li>QR-secured receipt issuance</li>
+<li>Audit-ready backend logging and governance</li>
+<li>Phase I OS deployment as scalable verification layer</li>
+</ul>
+</div>
+</div>
+
+<!-- Structured Capitalization -->
+<div class="container section" id="capital">
+<h2>Structured Capitalization</h2>
+<div class="card">
+<p>Limited Trustee Slots: 10 — Ensuring exclusivity and strategic early adoption.</p>
+<ul>
+<li>$100K – $250K: Supports early infrastructure scaling</li>
+<li>$250K – $500K: Enables backend & verification expansion</li>
+<li>$500K+: Strategic stake with priority influence on governance</li>
+</ul>
+<h3>Trustee Participation</h3>
+<p>Private positions allow investors to support COMET OS Phase I deployment while securing strategic future rights. Each slot grants early visibility into platform growth, data metrics, and governance participation.</p>
+</div>
+</div>
+
+<!-- Verification Portal -->
+<div class="container section" id="verification">
+<h2>Verification Portal</h2>
+<div class="card">
+<p>To participate, submit identity information and confirm bank settlement. Payments must go directly to FSTL First Bank Account: <strong>2025222557</strong>.</p>
+<form>
+<input type="text" placeholder="Full Name*" required>
+<input type="tel" placeholder="Phone (OTP)*" required>
+<button type="button" onclick="alert('OTP sent — demo only')">Send OTP</button>
+<input type="text" placeholder="Enter OTP*" required>
+<input type="email" placeholder="Email*" required>
+<input type="text" placeholder="NIN*" required>
+<input type="text" placeholder="BVN*" required>
+<input type="text" placeholder="Bank Account Number*" required>
+<input type="text" placeholder="Bank Name*" required>
+<input type="number" placeholder="Proposed Rent Amount*" required>
+<input type="text" placeholder="Property Location / COMET OS ID*" required>
+<button type="submit">Submit Verification</button>
+</form>
+</div>
+</div>
+
+<!-- Market Opportunity -->
+<div class="container section" id="market-opportunity">
 <h2>Market Opportunity</h2>
-
-<p>
-
-Nigeria's property market remains largely unverified.  
-FSTL COMET OS introduces a scalable infrastructure layer capable of transforming property assets into secure and verifiable transactions.
-
-</p>
-
+<div class="card">
+<p>Nigeria's land and landed property sector is large but fragmented. FSTL COMET OS addresses this gap by providing a structured, auditable, and revenue-generating verification layer, enabling:</p>
+<ul>
+<li>High-frequency property transactions</li>
+<li>Leveraging under-utilized property assets</li>
+<li>Regulatory compliance and traceability</li>
+<li>Scalable expansion to other emerging markets</li>
+</ul>
+</div>
 </div>
 
-<div class="card" id="contact">
+<!-- Nigeria Pilot Data Metrics -->
+<div class="container section" id="nigeria-pilot">
+<h2>Nigeria Pilot Data Metrics</h2>
+<div class="counters">
+<div class="counter-card"><span class="counter" data-count="1200">0</span> Verifications Completed</div>
+<div class="counter-card"><span class="counter" data-count="100">0</span>% Bank-Confirmed Payments</div>
+<div class="counter-card"><span class="counter" data-count="100">0</span>% QR-Secured Receipts</div>
+<div class="counter-card"><span class="counter" data-count="98">0</span>% Successful First-Time Verification</div>
+</div>
+</div>
 
-<h2>Contact</h2>
+<!-- FAQ Section -->
+<div class="container section" id="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="card">
+<p><strong>Q:</strong> What does COMET OS verify?<br><strong>A:</strong> Land and landed property ownership, transactions, and payment confirmations.</p>
+<p><strong>Q:</strong> Why invest in FSTL COMET OS?<br><strong>A:</strong> Early investors gain access to structured trustee slots, pilot data, and scalable revenue opportunities.</p>
+<p><strong>Q:</strong> How does verification work?<br><strong>A:</strong> Users submit identity + property data; bank confirmation is required; QR-secured receipts issued.</p>
+<p><strong>Q:</strong> What are trustee slots?<br><strong>A:</strong> Limited private slots for investors to participate in Phase I, supporting deployment and accessing future governance rights.</p>
+<p><strong>Q:</strong> Is Nigeria a pilot only?<br><strong>A:</strong> Yes, it serves as a stress-test; the platform is globally designed.</p>
+<p><strong>Q:</strong> How long does verification take?<br><strong>A:</strong> 24-48 hours depending on location.</p>
+<p><strong>Q:</strong> Are receipts forge-proof?<br><strong>A:</strong> Yes, QR-secured and database-linked.</p>
+</div>
+</div>
 
-<p>
+<!-- Legal / Compliance Disclaimer -->
+<div class="container section">
+<h2>Legal & Compliance Disclaimer</h2>
+<div class="card">
+<p>FSTL COMET OS is a verification infrastructure under FSTL governance. Investment in trustee slots involves risk and is subject to regulatory compliance. All payments go directly to FSTL First Bank and are auditable. This site is for informational purposes and does not constitute financial advice.</p>
+</div>
+</div>
 
-Address: 19 Egbor Avenue, Off Benoni Hospital Road  
-Benin City, Edo State, Nigeria
-
-</p>
-
+<!-- Contact Section -->
+<div class="container section" id="contact">
+<h2>Contact & Transparency</h2>
+<div class="card">
+<p>Address: No. 19 Egbor Avenue, Off Benoni Hospital Road, GRA, Benin City, Edo State, Nigeria</p>
 <p>Email: fstlsite@gmail.com</p>
-
 <p>Phone: +2348035888622</p>
-
+</div>
 </div>
 
-</div>
-
+<!-- Footer -->
 <div class="footer">
-
-© 2026 First Standard Title Limited
-
+© 2026 FSTL. All Rights Reserved.<br>
+COMET OS is a verification infrastructure operated under FSTL governance.
 </div>
+
+<!-- Counter Animation Script -->
+<script>
+const counters = document.querySelectorAll('.counter');
+counters.forEach(counter => {
+  const updateCount = () => {
+    const target = +counter.getAttribute('data-count');
+    const count = +counter.innerText;
+    const increment = target / 100;
+    if(count < target){
+      counter.innerText = Math.ceil(count + increment);
+      setTimeout(updateCount, 20);
+    } else {
+      counter.innerText = target;
+    }
+  };
+  updateCount();
+});
+</script>
 
 </body>
-
 </html>
+fstl-website/index.html at 4cbb84b6c8219e4443baae123647a0468f47dd22 · omorishaoba-alt/fstl-website 
