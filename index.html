@@ -31,8 +31,6 @@ nav a:hover{color:#60a5fa;}
 input,select,textarea,button{width:100%;padding:12px;margin-bottom:12px;border:1px solid #cbd5e1;border-radius:6px;font-size:16px;}
 button{cursor:pointer;background:#2563eb;color:#fff;font-weight:600;transition:0.3s;}
 button:hover{background:#1d4ed8;}
-.qr-sample{margin-top:20px;text-align:center;}
-.qr-sample img{width:180px;height:180px;border:1px solid #cbd5e1;border-radius:8px;}
 </style>
 </head>
 <body>
@@ -73,16 +71,10 @@ button:hover{background:#1d4ed8;}
 <ul>
 <li>OTP identity verification for users</li>
 <li>Bank-confirmed payment enforcement</li>
-<li>QR-secured receipt issuance (Dynamic for test runs)</li>
+<li>QR-secured receipt issuance</li>
 <li>Audit-ready backend logging and governance</li>
 <li>Phase I OS deployment as scalable verification layer</li>
 </ul>
-<div class="qr-sample">
-<img id="dynamic-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=FSTL-COMET-OS-DEMO" alt="QR Sample">
-<p>Test verification QR — enter sample data below to generate your own QR instantly.</p>
-<input type="text" id="qr-input" placeholder="Enter Test Property ID or Name">
-<button onclick="generateQR()">Generate QR</button>
-</div>
 </div>
 </div>
 
@@ -180,15 +172,190 @@ button:hover{background:#1d4ed8;}
 </div>
 </div>
 
+<!-- ========================================== -->
+<!-- MERGED IMPROVEMENTS ADDITIONS BLOCK -->
+<!-- ========================================== -->
+
+<!-- PLATFORM PURPOSE -->
+<div class="container section">
+<h2>Platform Purpose</h2>
+<div class="card">
+<p>
+COMET OS addresses long-standing challenges in property verification and transaction trust.
+</p>
+<p>
+The platform provides structured verification processes that support transparent and auditable property transactions.
+</p>
+</div>
+</div>
+
+<!-- PLATFORM VERIFICATION QR -->
+<div class="container section">
+<h2>Platform Verification</h2>
+<div class="card" style="text-align:center">
+<p>
+Visitors and investors may verify the platform using the verification QR below.
+</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=FSTL-COMET-OS-PLATFORM">
+</div>
+</div>
+
+<!-- ECONOMIC VALUE ENGINE -->
+<div class="container section">
+<h2>FSTL Economic Value Engine</h2>
+<div class="card">
+<h3 style="text-align:center">
+PROFIT = ADDED VALUE – COST
+</h3>
+<p>
+FSTL converts unverified property assets into verified transaction records trusted by buyers, sellers, investors, and institutions.
+</p>
+</div>
+</div>
+
+<!-- COMET OS ARCHITECTURE -->
+<div class="container section">
+<h2>COMET OS System Architecture</h2>
+<div class="card">
+<ul>
+<li>Identity Verification Layer</li>
+<li>Bank Settlement Confirmation Layer</li>
+<li>Verification Processing Engine</li>
+<li>QR Secured Receipt Layer</li>
+<li>Audit & Compliance Layer</li>
+</ul>
+</div>
+</div>
+
+<!-- TRANSACTION FLOW -->
+<div class="container section">
+<h2>COMET OS Transaction Flow</h2>
+<div class="card">
+<ol>
+<li>User Identity Verification</li>
+<li>Property Data Submission</li>
+<li>Bank Settlement Confirmation</li>
+<li>Verification Processing</li>
+<li>QR Secured Receipt Issuance</li>
+<li>Audit Record Creation</li>
+</ol>
+</div>
+</div>
+
+<!-- INVESTOR SELF TEST -->
+<div class="container section">
+<h2>Investor Self-Test Simulation</h2>
+<div class="card">
+<p>
+Visitors may perform a simple verification simulation.
+</p>
+<input type="text" id="testProperty" placeholder="Enter sample property name">
+<button onclick="generateTestVerification()">Run Verification Simulation</button>
+<p id="testResult" style="margin-top:20px;font-weight:600;"></p>
+</div>
+</div>
+
+<!-- REVENUE MODEL -->
+<div class="container section">
+<h2>COMET OS Revenue Model</h2>
+<div class="card">
+<ul>
+<li>Verification Services</li>
+<li>Transaction Validation Fees</li>
+<li>Institutional Licensing</li>
+<li>Infrastructure Integration</li>
+</ul>
+</div>
+</div>
+
+<!-- MARKET SCALE -->
+<div class="container section">
+<h2>Market Scale Potential</h2>
+<div class="card">
+<p>
+Land and property verification represents a major infrastructure opportunity across emerging markets.
+</p>
+</div>
+</div>
+
+<!-- GLOBAL EXPANSION -->
+<div class="container section">
+<h2>Global Expansion</h2>
+<div class="card">
+<p>
+The platform begins with deployment in Nigeria and is designed for expansion to other emerging property markets globally.
+</p>
+</div>
+</div>
+
+<!-- GOVERNANCE -->
+<div class="container section">
+<h2>Governance & Oversight</h2>
+<div class="card">
+<p>
+COMET OS operates under governance structures supporting transparency, accountability, and institutional credibility.
+</p>
+</div>
+</div>
+
+<!-- EARLY ADOPTION -->
+<div class="container section">
+<h2>Early Adoption Opportunity</h2>
+<div class="card">
+<p>
+A limited number of early participants may support the initial infrastructure deployment of COMET OS.
+</p>
+</div>
+</div>
+
+<!-- TRANSPARENCY -->
+<div class="container section">
+<h2>Transparency Commitment</h2>
+<div class="card">
+<p>
+All verification activity within COMET OS produces traceable records designed to support institutional trust and regulatory review.
+</p>
+</div>
+</div>
+
+<!-- INSTITUTIONAL COLLABORATION -->
+<div class="container section">
+<h2>Institutional Collaboration</h2>
+<div class="card">
+<p>
+Future collaboration may include banks, land administration agencies, and other institutional partners.
+</p>
+</div>
+</div>
+
+<!-- TRANSACTION INTEGRITY -->
+<div class="container section">
+<h2>Transaction Integrity Framework</h2>
+<div class="card">
+<p>
+Every verification request follows a structured validation pathway including identity confirmation, financial settlement confirmation, and secure record issuance.
+</p>
+</div>
+</div>
+
+<!-- INFRASTRUCTURE MISSION -->
+<div class="container section">
+<h2>Infrastructure Mission</h2>
+<div class="card">
+<p>
+To build transparent and verifiable infrastructure for land and property transactions.
+</p>
+</div>
+</div>
+
 <!-- Footer -->
 <div class="footer">
 © 2026 FSTL. All Rights Reserved.<br>
 COMET OS is a verification infrastructure operated under FSTL governance.
 </div>
 
-<!-- Scripts -->
+<!-- Counter Animation Script -->
 <script>
-// Counter Animation
 const counters = document.querySelectorAll('.counter');
 counters.forEach(counter => {
   const updateCount = () => {
@@ -205,16 +372,16 @@ counters.forEach(counter => {
   updateCount();
 });
 
-// Dynamic QR Generation
-function generateQR(){
-  const input = document.getElementById('qr-input').value.trim();
-  const qr = document.getElementById('dynamic-qr');
-  if(input === ''){
-    alert('Enter a property ID or name for test QR.');
-    return;
-  }
-  const qrData = `FSTL-COMET-OS-TEST-${encodeURIComponent(input)}`;
-  qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${qrData}`;
+function generateTestVerification(){
+let property = document.getElementById("testProperty").value;
+if(property === ""){
+document.getElementById("testResult").innerHTML =
+"Please enter a sample property name.";
+return;
+}
+document.getElementById("testResult").innerHTML =
+"Verification simulation completed for: " + property +
+". COMET OS would issue a QR secured verification record.";
 }
 </script>
 
