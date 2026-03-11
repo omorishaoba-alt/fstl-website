@@ -31,8 +31,8 @@ nav a:hover{color:#60a5fa;}
 input,select,textarea,button{width:100%;padding:12px;margin-bottom:12px;border:1px solid #cbd5e1;border-radius:6px;font-size:16px;}
 button{cursor:pointer;background:#2563eb;color:#fff;font-weight:600;transition:0.3s;}
 button:hover{background:#1d4ed8;}
-.qr-receipt{background:#f1f5f9;padding:20px;border-radius:8px;text-align:center;margin-top:20px;}
-.qr-code{display:block;margin:15px auto;width:150px;height:150px;background:#2563eb;border-radius:12px;line-height:150px;color:#fff;font-weight:700;font-size:14px;}
+.qr-sample{margin-top:20px;text-align:center;}
+.qr-sample img{width:180px;height:180px;border:1px solid #cbd5e1;border-radius:8px;}
 </style>
 </head>
 <body>
@@ -73,10 +73,16 @@ button:hover{background:#1d4ed8;}
 <ul>
 <li>OTP identity verification for users</li>
 <li>Bank-confirmed payment enforcement</li>
-<li>QR-secured receipt issuance</li>
+<li>QR-secured receipt issuance (Dynamic for test runs)</li>
 <li>Audit-ready backend logging and governance</li>
 <li>Phase I OS deployment as scalable verification layer</li>
 </ul>
+<div class="qr-sample">
+<img id="dynamic-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=FSTL-COMET-OS-DEMO" alt="QR Sample">
+<p>Test verification QR — enter sample data below to generate your own QR instantly.</p>
+<input type="text" id="qr-input" placeholder="Enter Test Property ID or Name">
+<button onclick="generateQR()">Generate QR</button>
+</div>
 </div>
 </div>
 
@@ -114,17 +120,7 @@ button:hover{background:#1d4ed8;}
 <input type="text" placeholder="Property Location / COMET OS ID*" required>
 <button type="submit">Submit Verification</button>
 </form>
-
-<!-- Sample QR Receipt without login -->
-<div class="qr-receipt">
-<p><strong>Sample Verification Receipt</strong></p>
-<div class="qr-code">QR: COMET12345</div>
-<p>Property Verified: Plot 12, GRA Benin City</p>
-<p>Transaction Status: Bank Confirmed</p>
-<p>Date: 11-Mar-2026</p>
-<p>Reference ID: COMET-OS-0001</p>
 </div>
-
 </div>
 
 <!-- Market Opportunity -->
@@ -190,8 +186,9 @@ button:hover{background:#1d4ed8;}
 COMET OS is a verification infrastructure operated under FSTL governance.
 </div>
 
-<!-- Counter Animation Script -->
+<!-- Scripts -->
 <script>
+// Counter Animation
 const counters = document.querySelectorAll('.counter');
 counters.forEach(counter => {
   const updateCount = () => {
@@ -207,6 +204,18 @@ counters.forEach(counter => {
   };
   updateCount();
 });
+
+// Dynamic QR Generation
+function generateQR(){
+  const input = document.getElementById('qr-input').value.trim();
+  const qr = document.getElementById('dynamic-qr');
+  if(input === ''){
+    alert('Enter a property ID or name for test QR.');
+    return;
+  }
+  const qrData = `FSTL-COMET-OS-TEST-${encodeURIComponent(input)}`;
+  qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${qrData}`;
+}
 </script>
 
 </body>
